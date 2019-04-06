@@ -11,13 +11,13 @@ import java.util.Base64;
 public class Decryptor extends AES {
 
 
-    public static String decrypt(String strToDecrypt, String secret)
+    public static String decrypt(String strToDecrypt, byte[] secret)
     {
         try
         {
-            setKey(secret);
+            //setSessionKey();
             Cipher cipher = Cipher.getInstance("AES/ECB/PKCS5PADDING");
-            cipher.init(Cipher.DECRYPT_MODE, secretKey);
+          //  cipher.init(Cipher.DECRYPT_MODE, secretKey);
             return new String(cipher.doFinal(Base64.getDecoder().decode(strToDecrypt)));
         }
         catch (Exception e)

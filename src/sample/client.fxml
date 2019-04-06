@@ -18,7 +18,7 @@
    <children>
       <AnchorPane fx:id="anchorp" prefHeight="480.0" prefWidth="640.0">
          <children>
-            <Button fx:id="backButton" layoutX="295.0" layoutY="430.0" mnemonicParsing="false" onAction="#goBack" text="Back" />
+            <Button fx:id="backButton" layoutX="597.0" layoutY="441.0" mnemonicParsing="false" onAction="#goBack" text="&lt;" />
             <Button fx:id="dsgbutton" layoutX="23.0" layoutY="27.0" mnemonicParsing="false" onAction="#chooseDsg" text="Choose" />
             <Label fx:id="pathLabel" layoutX="99.0" layoutY="27.0" prefHeight="25.0" prefWidth="527.0" text="C:/Path" />
             <TextField fx:id="filename" layoutX="23.0" layoutY="78.0" />

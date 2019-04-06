@@ -23,7 +23,7 @@ public class ClientController implements Control {
 
     @FXML
     void decryptFIle(ActionEvent event){
-        Decryptor.decrypt("howtodoinjava.com","ssshhhhhhhhhhh!!!!");
+      //  Decryptor.decrypt("howtodoinjava.com","ssshhhhhhhhhhh!!!!");
     }
 
     @FXML

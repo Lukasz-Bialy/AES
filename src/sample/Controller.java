@@ -1,12 +1,14 @@
 package sample;
+
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
-import javafx.fxml.FXMLLoader;
-import javafx.scene.Parent;
-import javafx.scene.Scene;
 import javafx.scene.layout.AnchorPane;
 import javafx.stage.FileChooser;
 import javafx.stage.Stage;
+
+import java.io.IOException;
+import java.security.NoSuchAlgorithmException;
+import java.security.spec.InvalidKeySpecException;
 
 public class Controller implements Control {
 
@@ -40,7 +42,18 @@ public class Controller implements Control {
         window.launchServer();
     }
 
+    @FXML
+    void generateKeyPair() {
+        window.launchKeyGenerator();
+    }
+
     public void setStage(Stage stage){
         this.stage = stage;
     }
+
+    @FXML
+    void testFunctionality() throws NoSuchAlgorithmException, IOException, InvalidKeySpecException {
+        RSA.readPublicKey("Marcin");
+    }
+
 }
