@@ -1,31 +1,105 @@
 package sample;
 
 import javax.crypto.*;
+import javax.crypto.spec.SecretKeySpec;
 import java.io.*;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.security.*;
 import java.security.spec.InvalidKeySpecException;
+import java.security.spec.KeySpec;
+import java.security.spec.PKCS8EncodedKeySpec;
 import java.security.spec.X509EncodedKeySpec;
-import java.util.HashMap;
-import java.util.Map;
+import java.util.*;
 
 import static java.lang.System.out;
 
 public class RSA {
-    public static byte[] encryptWithRSA(String mode, Key publicKey, byte[] resource) throws InvalidKeyException, NoSuchPaddingException, NoSuchAlgorithmException, BadPaddingException, IllegalBlockSizeException {
-        Cipher cipher = Cipher.getInstance("RSA");
-        cipher.init(Cipher.ENCRYPT_MODE, publicKey);
-        return cipher.doFinal(resource);
+
+
+    private static byte[] cryptography(Key key, byte[] resource, int mode) {
+        Cipher cipher = null;
+        try {
+            cipher = Cipher.getInstance("RSA/ECB/PKCS1Padding");
+            cipher.init(mode, key);
+            return cipher.doFinal(resource);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return null;
     }
 
-    public static Map<String, TransferTarget> encryptWithRSA(String mode, HashMap<String, Key> receivers, SecretKey sessionKey, Header encryptionParams) {
-        Map<String, TransferTarget> encryptedUserKeys = new HashMap<>();
+    public static byte[] encryptHeader(Key key, byte[] resource) {
+        Cipher cipher = null;
+        int encLength = resource.length % 245 == 0 ? resource.length / 245 : resource.length / 245 + 1;
+        try {
+            byte[] result = new byte[encLength * 256];
+            cipher = Cipher.getInstance("RSA/ECB/PKCS1Padding");
+            cipher.init(Cipher.ENCRYPT_MODE, key);
+            int resourceIndex = 0;
+            int resultIndex = 0;
+            int bytesLeft = resource.length;
+            while (bytesLeft > 245) {
+                byte[] outputBuffer = cipher.doFinal(Arrays.copyOfRange(resource, resourceIndex, resourceIndex + 245));
+                System.arraycopy(outputBuffer, 0, result, resultIndex, 256);
+                resourceIndex = resourceIndex + 245;
+                resultIndex = resultIndex + 256;
+                bytesLeft = bytesLeft - resourceIndex;
+            }
+            byte[] outputbuffer = cipher.doFinal(Arrays.copyOfRange(resource, resourceIndex, resourceIndex + bytesLeft));
+            System.arraycopy(outputbuffer, 0, result, resultIndex, 256);
+            return result;
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return null;
+    }
+
+    public static byte[] decryptHeader(Key key, byte[] resource) {
+        Cipher cipher = null;
+        int decLength = resource.length / 256;
+        try {
+            byte[] result = new byte[decLength * 256];//???
+            cipher = Cipher.getInstance("RSA/ECB/PKCS1Padding");
+            cipher.init(Cipher.DECRYPT_MODE, key);
+            int resourceIndex = 0;
+            int resultIndex = 0;
+            while (decLength > 0) {
+                byte[] outputBuffer = cipher.doFinal(Arrays.copyOfRange(resource, resourceIndex, resourceIndex + 256));
+                System.arraycopy(outputBuffer, 0, result, resultIndex, outputBuffer.length);
+                resourceIndex = resourceIndex + 256;
+                resultIndex = resultIndex + outputBuffer.length;
+                decLength--;
+            }
+            byte[] finalResult = new byte[resultIndex];
+            System.arraycopy(result, 0, finalResult, 0, resultIndex);
+            return result;
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return null;
+    }
+
+    public static byte[] encryptWithRSA(Key publicKey, byte[] resource) {
+        return cryptography(publicKey, resource, Cipher.ENCRYPT_MODE);
+    }
+
+    public static byte[] decryptWithRSA(Key privateKey, byte[] resource) {
+        return cryptography(privateKey, resource, Cipher.DECRYPT_MODE);
+    }
+
+    public static Map<String, Collection<Byte>> encryptWithRSA(String mode, HashMap<String, Key> receivers, SecretKey sessionKey, Header encryptionParams, byte[] initializationVector) {
+        Map<String, Collection<Byte>> encryptedUserKeys = new HashMap<>();
         receivers.forEach((user, publicKey) -> {
             try {
-                TransferTarget tt = new TransferTarget(encryptWithRSA(mode, publicKey, sessionKey.getEncoded()), encryptWithRSA(mode, publicKey, encryptionParams.toBytes()));
-                encryptedUserKeys.put(user, tt);
+                byte[] encodedHeaderArray = encryptHeader(publicKey, encryptionParams.toBytes());
+                Collection<Byte> encodedHeaderList = new ArrayList<Byte>();
+                for (byte b : encodedHeaderArray
+                ) {
+                    encodedHeaderList.add(b);
+                }
+                encryptedUserKeys.put(user, encodedHeaderList);
             } catch (Exception e) {
                 e.printStackTrace();
             }
@@ -33,37 +107,68 @@ public class RSA {
         return encryptedUserKeys;
     }
 
-    public static void decryptWithRSA() {
-
-    }
-
-    public static void generateKeyPair(String user) throws NoSuchAlgorithmException, IOException {
+    public static KeyPair generateKeyPair() throws NoSuchAlgorithmException, IOException {
         KeyPairGenerator kpg = KeyPairGenerator.getInstance("RSA");
         kpg.initialize(2048);
         KeyPair kp = kpg.generateKeyPair();
-        Key publicKey = kp.getPublic();
-        Key privateKey = kp.getPrivate();
-        out.println(publicKey);
-        toFile(publicKey, user, "Public");
-        toFile(privateKey, user, "Private");
+        return kp;
     }
 
-    public static void toFile(Key key, String name, String type) throws IOException {
+    public static PublicKey readPublicKey(String location) throws IOException, NoSuchAlgorithmException, InvalidKeySpecException {
+        byte[] bytes = readFile(location);
+        return bytesToPublicKey(bytes);
+    }
+
+    public static byte[] readFile(String location) throws IOException, NoSuchAlgorithmException, InvalidKeySpecException {
+        Path path = Paths.get(location);
+        byte[] bytes = Files.readAllBytes(path);
+        return bytes;
+    }
+
+    public static PublicKey bytesToPublicKey(byte[] bytes) {
+        X509EncodedKeySpec ks = new X509EncodedKeySpec(bytes);
+        KeyFactory kf = null;
+        try {
+            kf = KeyFactory.getInstance("RSA");
+            PublicKey publicKey = kf.generatePublic(ks);
+            out.println(publicKey);
+            return publicKey;
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return null;
+    }
+
+    public static PrivateKey bytesToPrivateKey(byte[] bytes) {
+        PKCS8EncodedKeySpec ks = new PKCS8EncodedKeySpec(bytes);
+        KeyFactory kf = null;
+        try {
+            kf = KeyFactory.getInstance("RSA");
+            PrivateKey privateKey = kf.generatePrivate(ks);
+            out.println(privateKey);
+            return privateKey;
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return null;
+    }
+
+    public static SecretKeySpec sha256(String password) {
+        MessageDigest md = null;
+        try {
+            md = MessageDigest.getInstance("SHA-256");
+        } catch (NoSuchAlgorithmException e) {
+            e.printStackTrace();
+        }
+        byte[] messageDigest = md.digest(password.getBytes());
+        SecretKeySpec keySpec = new SecretKeySpec(messageDigest, "AES");
+        return keySpec;
+    }
+
+    public static void toFile(byte[] key, String destination) throws IOException {
         OutputStream out;
-        String outFile = name;
-        out = new FileOutputStream(type + outFile + ".key");
-        out.write(key.getEncoded());
+        out = new FileOutputStream(destination + ".key");
+        out.write(key);
         out.close();
     }
-
-    public static Key readPublicKey(String user) throws IOException, NoSuchAlgorithmException, InvalidKeySpecException {
-        Path path = Paths.get("PublicKeys/Public" + user + ".key");
-        byte[] bytes = Files.readAllBytes(path);
-        X509EncodedKeySpec ks = new X509EncodedKeySpec(bytes);
-        KeyFactory kf = KeyFactory.getInstance("RSA");
-        PublicKey publicKey = kf.generatePublic(ks);
-        out.println(publicKey);
-        return publicKey;
-    }
-
 }

@@ -27,6 +27,8 @@ public class ServerController implements Control {
 
     private File file;
 
+    private Encryptor encryptor;
+
     private Window window;
 
     @FXML
@@ -47,6 +49,7 @@ public class ServerController implements Control {
         subBlockChoiceBox.setValue("128");
         subBlockChoiceBox.getItems().addAll("8", "16", "32", "64", "128");
         clientList.getItems().addAll("Lukasz", "Profesor", "Bartosz");
+        encryptor = new Encryptor();
     }
 
 
@@ -90,16 +93,13 @@ public class ServerController implements Control {
             if (receivers.isEmpty() == true) {
                 errorMessage("No receivers", "Choose at least one receiver");
             } else {
-                if (subBlockChoiceBox.isDisabled()) {
-                    System.out.println(mode + " - Tryb szyfrowania");
-                    Encryptor.encrypt(file, mode, receivers);
-                } else {
+                if (subBlockChoiceBox.isDisabled() == false) {
                     mode = mode + subBlockChoiceBox.getValue();
-                    System.out.println(mode + " - Tryb szyfrowania");
-                    Encryptor.encrypt(file, mode, receivers);
                 }
+                System.out.println(mode + " - Tryb szyfrowania");
+                encryptor.setMode(mode);
+                encryptor.encrypt(file, receivers);
             }
-
         } else if (file.length() < 1024) {
             errorMessage("Input file too small", "Choose other file with size over 1kB");
         } else if (file.length() > 104857600) {
@@ -139,7 +139,7 @@ public class ServerController implements Control {
         HashMap<String, Key> receivers = new HashMap<>();
         for (String user : selectedClients
         ) {
-            receivers.put(user, RSA.readPublicKey(user));
+            receivers.put(user, RSA.readPublicKey("PublicKeys/Public" + user + ".key"));
         }
         return receivers;
     }

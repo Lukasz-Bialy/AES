@@ -1,33 +1,33 @@
 package sample;
 
 
+import javax.crypto.SecretKey;
 import java.io.File;
 import java.security.Key;
 import java.security.SecureRandom;
+import java.util.ArrayList;
+import java.util.Collection;
 import java.util.HashMap;
 import java.util.Map;
 
 public class Encryptor extends AES {
-    private static byte[] initializationVector;
-    private static Header header;
 
-    private static void randomInitVector() {
-        initializationVector = new byte[16];
-        SecureRandom srandom = new SecureRandom();
-        srandom.nextBytes(initializationVector);
+    private String mode;
+
+    public void setMode(String mode) {
+        this.mode = mode;
     }
 
-    public static String encrypt(File inputFile, String mode, HashMap<String, Key> receivers) {
+
+    public String encrypt(File inputFile, HashMap<String, Key> receivers) {
         try {
-            AES.generateSessionKey();
-            randomInitVector();
-            header = AES.encrypt(mode, inputFile, receivers, initializationVector);
-            Map<String, TransferTarget> encryptedSessionKeys = RSA.encryptWithRSA(mode, receivers, AES.getSessionKey(), header);
+            SecretKey sessionKey = AES.generateSessionKey();
+            byte[] initializationVector = AES.randomInitVector();
+            Header header = AES.encrypt(mode, inputFile, sessionKey, initializationVector);
+            Map<String, Collection<Byte>> encryptedSessionKeys = RSA.encryptWithRSA(mode, receivers, sessionKey, header, initializationVector);
         } catch (Exception e) {
             System.out.println("Error while encrypting: " + e.toString());
         }
         return null;
     }
-
-
 }

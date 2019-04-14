@@ -1,7 +1,34 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="cdb932d9-7e58-4d94-93a9-e7b232ef17da" name="Default" comment="" />
+    <list default="true" id="cdb932d9-7e58-4d94-93a9-e7b232ef17da" name="Default" comment="">
+      <change afterPath="$PROJECT_DIR$/.idea/checkstyle-idea.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/vcs.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/vcs.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/BSK.iml" beforeDir="false" afterPath="$PROJECT_DIR$/BSK.iml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/BSK/sample/AES.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/BSK/sample/AES.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/BSK/sample/ClientController.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/BSK/sample/ClientController.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/BSK/sample/Controller.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/BSK/sample/Controller.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/BSK/sample/Decryptor.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/BSK/sample/Decryptor.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/BSK/sample/Encryptor.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/BSK/sample/Encryptor.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/BSK/sample/Generator.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/BSK/sample/ServerController$1.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/BSK/sample/ServerController$1.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/BSK/sample/ServerController.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/BSK/sample/ServerController.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/BSK/sample/Window.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/BSK/sample/Window.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/BSK/sample/client.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/BSK/sample/client.fxml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/BSK/sample/scene.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/BSK/sample/scene.fxml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/BSK/sample/server.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/BSK/sample/server.fxml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/sample/AES.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/sample/AES.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/sample/Controller.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/sample/Controller.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/sample/Decryptor.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/sample/Decryptor.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/sample/Encryptor.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/sample/Encryptor.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/sample/Header.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/sample/Header.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/sample/RSA.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/sample/RSA.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/sample/RSAkeys.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/sample/ServerController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/sample/ServerController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/sample/TransferTarget.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/sample/Window.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/sample/Window.java" afterDir="false" />
+    </list>
     <ignored path="JavaFxApplication.iws" />
     <ignored path=".idea/workspace.xml" />
     <ignored path="$PROJECT_DIR$/out/" />
@@ -58,8 +85,7 @@
     <breakpoint_rules converted="true" />
   </component>
   <component name="DefaultGradleProjectSettings">
-    <option name="testRunner" value="GRADLE" />
-    <option name="delegatedBuild" value="true" />
+    <option name="isMigrated" value="true" />
   </component>
   <component name="FavoritesManager">
     <favorites_list name="JavaFxApplication" />
@@ -67,34 +93,56 @@
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="600">
       <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/sample/Main.java">
+        <entry file="file://$PROJECT_DIR$/src/sample/Decryptor.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="390">
-              <caret line="30" column="45" selection-start-line="30" selection-start-column="45" selection-end-line="30" selection-end-column="45" />
+            <state relative-caret-position="255">
+              <caret line="17" selection-start-line="17" selection-end-line="17" />
               <folding>
                 <element signature="imports" expanded="true" />
+                <element signature="method#decrypt#0;class#Decryptor#0" />
               </folding>
             </state>
           </provider>
         </entry>
       </file>
       <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/sample/Window.java">
+        <entry file="file://$PROJECT_DIR$/src/sample/RSA.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="90">
-              <caret line="11" column="23" selection-start-line="11" selection-start-column="23" selection-end-line="11" selection-end-column="23" />
+            <state relative-caret-position="262">
+              <caret line="67" column="35" lean-forward="true" selection-start-line="67" selection-start-column="35" selection-end-line="67" selection-end-column="35" />
               <folding>
                 <element signature="imports" expanded="true" />
+                <element signature="method#cryptography#0;class#RSA#0" />
+                <element signature="method#enc#0;class#RSA#0" />
+                <element signature="method#encryptWithRSA#0;class#RSA#0" />
+                <element signature="method#decryptWithRSA#0;class#RSA#0" />
+                <element signature="e#2620#2626#0" expanded="true" />
+                <element signature="method#generateKeyPair#0;class#RSA#0" />
+                <element signature="method#readPublicKey#0;class#RSA#0" />
+                <element signature="method#readFile#0;class#RSA#0" />
+                <element signature="method#bytesToPublicKey#0;class#RSA#0" />
+                <element signature="method#bytesToPrivateKey#0;class#RSA#0" />
+                <element signature="method#sha256#0;class#RSA#0" />
+                <element signature="method#toFile#0;class#RSA#0" />
               </folding>
             </state>
           </provider>
         </entry>
       </file>
       <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/sample/Controller.java">
+        <entry file="file://$PROJECT_DIR$/README.txt">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="300">
-              <caret line="20" selection-start-line="20" selection-end-line="20" />
+            <state relative-caret-position="285">
+              <caret line="19" selection-start-line="19" selection-end-line="19" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/src/sample/test/AESTest.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="404">
+              <caret line="65" column="27" selection-start-line="65" selection-start-column="27" selection-end-line="65" selection-end-column="27" />
               <folding>
                 <element signature="imports" expanded="true" />
               </folding>
@@ -105,82 +153,18 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/sample/ServerController.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="339">
-              <caret line="85" selection-start-line="85" selection-end-line="85" />
+            <state relative-caret-position="277">
+              <caret line="39" column="9" selection-start-line="39" selection-start-column="9" selection-end-line="39" selection-end-column="9" />
               <folding>
-                <element signature="e#3446#3447#0" expanded="true" />
-                <element signature="e#3480#3481#0" expanded="true" />
+                <element signature="method#initialize#0;class#ServerController#0" />
+                <element signature="method#goBack#0;class#ServerController#0" />
+                <element signature="method#initializeModeSelection#0;class#ServerController#0" />
+                <element signature="method#chooseSrc#0;class#ServerController#0" />
+                <element signature="method#encryptFile#0;class#ServerController#0" />
+                <element signature="method#errorMessage#0;class#ServerController#0" />
+                <element signature="method#transferClients#0;class#ServerController#0" />
+                <element signature="method#readPublicKeys#0;class#ServerController#0" />
               </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/sample/Generator.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="90">
-              <caret line="6" column="12" selection-start-line="6" selection-start-column="12" selection-end-line="6" selection-end-column="12" />
-              <folding>
-                <element signature="e#319#320#0" expanded="true" />
-                <element signature="e#373#374#0" expanded="true" />
-                <element signature="e#566#567#0" expanded="true" />
-                <element signature="e#597#598#0" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/sample/Encryptor.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="285">
-              <caret line="19" selection-start-line="19" selection-end-line="19" />
-              <folding>
-                <element signature="imports" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/src/sample/AES.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="330">
-              <caret line="22" column="14" selection-start-line="22" selection-start-column="14" selection-end-line="22" selection-end-column="14" />
-              <folding>
-                <element signature="imports" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/sample/ClientController.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="255">
-              <caret line="25" column="66" selection-start-line="25" selection-start-column="66" selection-end-line="25" selection-end-column="66" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/sample/Decryptor.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="75">
-              <caret line="11" selection-start-line="11" selection-end-line="11" />
-              <folding>
-                <element signature="imports" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/sample/client.fxml">
-          <provider editor-type-id="JavaFX-Scene-Builder" />
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="375">
-              <caret line="25" column="97" selection-start-line="25" selection-start-column="86" selection-end-line="25" selection-end-column="97" />
             </state>
           </provider>
         </entry>
@@ -198,12 +182,25 @@
   <component name="FindInProjectRecents">
     <findStrings>
       <find>setKey</find>
+      <find>receiver</find>
+      <find>new</find>
+      <find>parent</find>
+      <find>forEach</find>
+      <find>Header</find>
+      <find>RSATest</find>
+      <find>AESTest/CBC/PKCS5Padding</find>
+      <find>Test</find>
+      <find>sha</find>
+      <find>deser</find>
     </findStrings>
   </component>
   <component name="FindManager">
     <FindUsagesManager>
       <setting name="OPEN_NEW_TAB" value="false" />
     </FindUsagesManager>
+  </component>
+  <component name="Git.Settings">
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
   </component>
   <component name="IdeDocumentHistory">
     <option name="CHANGED_PATHS">
@@ -213,26 +210,42 @@
         <option value="$PROJECT_DIR$/src/sample/ControlFactory.java" />
         <option value="$PROJECT_DIR$/src/sample/ControlerFactory.java" />
         <option value="$PROJECT_DIR$/src/sample/Control.java" />
-        <option value="$PROJECT_DIR$/src/sample/Controller.java" />
-        <option value="$PROJECT_DIR$/src/sample/Window.java" />
         <option value="$PROJECT_DIR$/src/sample/Encoder.java" />
         <option value="$PROJECT_DIR$/src/sample/Main.java" />
         <option value="$PROJECT_DIR$/src/sample/server.fxml" />
-        <option value="$PROJECT_DIR$/src/sample/AES.java" />
-        <option value="$PROJECT_DIR$/src/sample/Decryptor.java" />
         <option value="$PROJECT_DIR$/src/sample/ClientController.java" />
-        <option value="$PROJECT_DIR$/src/sample/Encryptor.java" />
         <option value="$PROJECT_DIR$/src/sample/Generator.java" />
+        <option value="$PROJECT_DIR$/src/sample/RSAkeys.java" />
+        <option value="$PROJECT_DIR$/PublicKeys/Profesor.txt" />
+        <option value="$PROJECT_DIR$/PublicKeys/Bartosz.txt" />
+        <option value="$PROJECT_DIR$/src/sample/scene.fxml" />
+        <option value="$PROJECT_DIR$/src/sample/users.txt" />
+        <option value="$PROJECT_DIR$/Tests/Tests.java" />
+        <option value="$PROJECT_DIR$/src/sample/Controller.java" />
+        <option value="$PROJECT_DIR$/src/sample/Window.java" />
+        <option value="$PROJECT_DIR$/src/sample/Tests.java" />
         <option value="$PROJECT_DIR$/src/sample/ServerController.java" />
+        <option value="$PROJECT_DIR$/src/sample/test/PrivateKeyTest.java" />
+        <option value="$PROJECT_DIR$/src/sample/test/HeaderEncryptionTest.java" />
+        <option value="$PROJECT_DIR$/src/sample/test/RSATest.java" />
+        <option value="$PROJECT_DIR$/src/sample/TransferTarget.java" />
+        <option value="$PROJECT_DIR$/README.txt" />
+        <option value="$PROJECT_DIR$/src/sample/Encryptor.java" />
+        <option value="$PROJECT_DIR$/src/sample/Decryptor.java" />
+        <option value="$PROJECT_DIR$/src/sample/Header.java" />
+        <option value="$PROJECT_DIR$/src/sample/AES.java" />
+        <option value="$PROJECT_DIR$/src/sample/RSA.java" />
+        <option value="$PROJECT_DIR$/src/sample/test/AESTest.java" />
       </list>
     </option>
   </component>
   <component name="PhpWorkspaceProjectConfiguration" backward_compatibility_performed="true" />
   <component name="ProjectFrameBounds" extendedState="6">
-    <option name="y" value="1105" />
+    <option name="y" value="1078" />
     <option name="width" value="1920" />
     <option name="height" value="998" />
   </component>
+  <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
   <component name="ProjectReloadState">
     <option name="STATE" value="0" />
   </component>
@@ -241,7 +254,6 @@
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
-      <pane id="PackagesPane" />
       <pane id="Scope" />
       <pane id="ProjectPane">
         <subPane>
@@ -249,6 +261,16 @@
             <path>
               <item name="BSK" type="b2602c69:ProjectViewProjectNode" />
               <item name="BSK" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="BSK" type="b2602c69:ProjectViewProjectNode" />
+              <item name="BSK" type="462c0819:PsiDirectoryNode" />
+              <item name="PrivateKeys" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="BSK" type="b2602c69:ProjectViewProjectNode" />
+              <item name="BSK" type="462c0819:PsiDirectoryNode" />
+              <item name="PublicKeys" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
               <item name="BSK" type="b2602c69:ProjectViewProjectNode" />
@@ -261,13 +283,22 @@
               <item name="src" type="462c0819:PsiDirectoryNode" />
               <item name="sample" type="462c0819:PsiDirectoryNode" />
             </path>
+            <path>
+              <item name="BSK" type="b2602c69:ProjectViewProjectNode" />
+              <item name="BSK" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="sample" type="462c0819:PsiDirectoryNode" />
+              <item name="test" type="462c0819:PsiDirectoryNode" />
+            </path>
           </expand>
           <select />
         </subPane>
       </pane>
+      <pane id="PackagesPane" />
     </panes>
   </component>
   <component name="PropertiesComponent">
+    <property name="Downloaded.Files.Path.Enabled" value="false" />
     <property name="GoToClass.includeLibraries" value="false" />
     <property name="GoToClass.toSaveIncludeLibraries" value="false" />
     <property name="GoToFile.includeJavaFiles" value="false" />
@@ -275,23 +306,29 @@
     <property name="MemberChooser.showClasses" value="true" />
     <property name="MemberChooser.sorted" value="false" />
     <property name="OverrideImplement.combined" value="false" />
+    <property name="Repository.Attach.Annotations" value="false" />
+    <property name="Repository.Attach.JavaDocs" value="false" />
+    <property name="Repository.Attach.Sources" value="false" />
+    <property name="SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="aspect.path.notification.shown" value="true" />
     <property name="com.android.tools.idea.instantapp.provision.ProvisionBeforeRunTaskProvider.myTimeStamp" value="1553420179251" />
     <property name="dynamic.classpath" value="false" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/PublicKeys" />
     <property name="nodejs_package_manager_path" value="npm" />
     <property name="project.structure.last.edited" value="Global Libraries" />
     <property name="project.structure.proportion" value="0.15" />
     <property name="project.structure.side.proportion" value="0.2" />
     <property name="recentsLimit" value="5" />
-    <property name="settings.editor.selected.configurable" value="preferences.JavaFX" />
+    <property name="run.code.analysis.last.selected.profile" value="pProject Default" />
+    <property name="settings.editor.selected.configurable" value="org.infernus.idea.checkstyle.CheckStyleConfigurable" />
   </component>
   <component name="RecentsManager">
     <key name="CopyClassDialog.RECENTS_KEY">
       <recent name="sample" />
     </key>
     <key name="CopyFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/PublicKeys" />
       <recent name="$PROJECT_DIR$/src/sample" />
     </key>
   </component>
@@ -307,7 +344,7 @@
       </list>
     </option>
   </component>
-  <component name="RunManager">
+  <component name="RunManager" selected="JUnit.AESTest.headerCryptography">
     <configuration default="true" type="DartUnitRunConfigurationType" factoryName="DartUnit">
       <option name="VMOptions" />
       <option name="arguments" />
@@ -348,6 +385,105 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
+    <configuration name="AESTest" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="BSK" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="sample.test.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <option name="PACKAGE_NAME" value="sample.test" />
+      <option name="MAIN_CLASS_NAME" value="sample.test.AESTest" />
+      <option name="TEST_OBJECT" value="class" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$" />
+      <option name="TEST_SEARCH_SCOPE">
+        <value defaultName="moduleWithDependencies" />
+      </option>
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="AESTest.dodaj" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="BSK" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="sample.test.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <option name="PACKAGE_NAME" value="sample.test" />
+      <option name="MAIN_CLASS_NAME" value="sample.test.AESTest" />
+      <option name="METHOD_NAME" value="dodaj" />
+      <option name="TEST_OBJECT" value="method" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$" />
+      <option name="TEST_SEARCH_SCOPE">
+        <value defaultName="moduleWithDependencies" />
+      </option>
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="AESTest.encryptHeader" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="BSK" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="sample.test.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <option name="PACKAGE_NAME" value="sample.test" />
+      <option name="MAIN_CLASS_NAME" value="sample.test.AESTest" />
+      <option name="METHOD_NAME" value="encryptHeader" />
+      <option name="TEST_OBJECT" value="method" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$" />
+      <option name="TEST_SEARCH_SCOPE">
+        <value defaultName="moduleWithDependencies" />
+      </option>
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="AESTest.headerCryptography" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="BSK" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="sample.test.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <option name="PACKAGE_NAME" value="sample.test" />
+      <option name="MAIN_CLASS_NAME" value="sample.test.AESTest" />
+      <option name="METHOD_NAME" value="headerCryptography" />
+      <option name="TEST_OBJECT" value="method" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$" />
+      <option name="TEST_SEARCH_SCOPE">
+        <value defaultName="moduleWithDependencies" />
+      </option>
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="AESTest.sessionKeyCryptography" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="BSK" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="sample.test.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <option name="PACKAGE_NAME" value="sample.test" />
+      <option name="MAIN_CLASS_NAME" value="sample.test.AESTest" />
+      <option name="METHOD_NAME" value="sessionKeyCryptography" />
+      <option name="TEST_OBJECT" value="method" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$" />
+      <option name="TEST_SEARCH_SCOPE">
+        <value defaultName="moduleWithDependencies" />
+      </option>
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
     <configuration default="true" type="JUnit" factoryName="JUnit">
       <option name="TEST_OBJECT" value="class" />
       <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$" />
@@ -379,6 +515,15 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
+    <recent_temporary>
+      <list>
+        <item itemvalue="JUnit.AESTest.headerCryptography" />
+        <item itemvalue="JUnit.AESTest.dodaj" />
+        <item itemvalue="JUnit.AESTest.sessionKeyCryptography" />
+        <item itemvalue="JUnit.AESTest.encryptHeader" />
+        <item itemvalue="JUnit.AESTest" />
+      </list>
+    </recent_temporary>
   </component>
   <component name="SvnConfiguration">
     <configuration />
@@ -398,12 +543,55 @@
       <workItem from="1553329986245" duration="1757000" />
       <workItem from="1553339513402" duration="13452000" />
       <workItem from="1553419735629" duration="448000" />
-      <workItem from="1553871733393" duration="4358000" />
+      <workItem from="1553871733393" duration="16137000" />
+      <workItem from="1553928780702" duration="8250000" />
+      <workItem from="1554133551110" duration="58000" />
+      <workItem from="1554531334750" duration="2728000" />
+      <workItem from="1554547005778" duration="24468000" />
+      <workItem from="1554632157413" duration="23000" />
+      <workItem from="1554648153343" duration="6849000" />
+      <workItem from="1555078584757" duration="12220000" />
+      <workItem from="1555139191188" duration="637000" />
+      <workItem from="1555139846683" duration="236000" />
+      <workItem from="1555140100562" duration="24851000" />
+      <workItem from="1555229962035" duration="11587000" />
     </task>
     <servers />
   </component>
+  <component name="TestHistory">
+    <history-entry file="AESTest_headerCryptography - 2019.04.14 at 23h 19m 24s.xml">
+      <configuration name="AESTest.headerCryptography" configurationId="JUnit" />
+    </history-entry>
+    <history-entry file="AESTest_headerCryptography - 2019.04.14 at 23h 19m 30s.xml">
+      <configuration name="AESTest.headerCryptography" configurationId="JUnit" />
+    </history-entry>
+    <history-entry file="AESTest_headerCryptography - 2019.04.14 at 23h 21m 33s.xml">
+      <configuration name="AESTest.headerCryptography" configurationId="JUnit" />
+    </history-entry>
+    <history-entry file="AESTest_headerCryptography - 2019.04.14 at 23h 21m 40s.xml">
+      <configuration name="AESTest.headerCryptography" configurationId="JUnit" />
+    </history-entry>
+    <history-entry file="AESTest_headerCryptography - 2019.04.14 at 23h 38m 29s.xml">
+      <configuration name="AESTest.headerCryptography" configurationId="JUnit" />
+    </history-entry>
+    <history-entry file="AESTest_headerCryptography - 2019.04.14 at 23h 41m 26s.xml">
+      <configuration name="AESTest.headerCryptography" configurationId="JUnit" />
+    </history-entry>
+    <history-entry file="AESTest_headerCryptography - 2019.04.14 at 23h 41m 37s.xml">
+      <configuration name="AESTest.headerCryptography" configurationId="JUnit" />
+    </history-entry>
+    <history-entry file="AESTest_headerCryptography - 2019.04.14 at 23h 42m 06s.xml">
+      <configuration name="AESTest.headerCryptography" configurationId="JUnit" />
+    </history-entry>
+    <history-entry file="AESTest_headerCryptography - 2019.04.14 at 23h 42m 23s.xml">
+      <configuration name="AESTest.headerCryptography" configurationId="JUnit" />
+    </history-entry>
+    <history-entry file="AESTest_headerCryptography - 2019.04.14 at 23h 42m 53s.xml">
+      <configuration name="AESTest.headerCryptography" configurationId="JUnit" />
+    </history-entry>
+  </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="40949000" />
+    <option name="totallyTimeSpent" value="144635000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -418,32 +606,35 @@
     <frame x="0" y="1105" width="1920" height="998" extended-state="6" />
     <editor active="true" />
     <layout>
-      <window_info content_ui="combo" id="Project" order="0" sideWeight="0.6703755" visible="true" weight="0.15848452" />
+      <window_info content_ui="combo" id="Project" order="0" sideWeight="0.6703755" visible="true" weight="0.19210246" />
       <window_info id="Structure" order="1" weight="0.25" />
-      <window_info id="Favorites" order="2" />
+      <window_info id="Favorites" order="2" weight="0.32977587" />
       <window_info id="Designer" order="3" />
       <window_info id="Image Layers" order="4" />
       <window_info id="Capture Tool" order="5" />
       <window_info id="UI Designer" order="6" />
+      <window_info id="Learn" order="7" />
       <window_info anchor="bottom" id="Message" order="0" />
-      <window_info anchor="bottom" id="Find" order="1" />
-      <window_info anchor="bottom" id="Run" order="2" weight="0.326062" />
-      <window_info active="true" anchor="bottom" id="Debug" order="3" visible="true" weight="0.39954075" />
+      <window_info anchor="bottom" id="Find" order="1" weight="0.32911393" />
+      <window_info active="true" anchor="bottom" id="Run" order="2" visible="true" weight="0.30264673" />
+      <window_info anchor="bottom" id="Debug" order="3" weight="0.4004603" />
       <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
       <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
-      <window_info anchor="bottom" id="TODO" order="6" weight="0.3295063" />
+      <window_info anchor="bottom" id="TODO" order="6" weight="0.32911393" />
       <window_info anchor="bottom" id="Application Servers" order="7" />
       <window_info anchor="bottom" id="Version Control" order="8" />
       <window_info anchor="bottom" id="Problems" order="9" />
       <window_info anchor="bottom" id="Changes" order="10" />
       <window_info anchor="bottom" id="Profiler" order="11" />
       <window_info anchor="bottom" id="Event Log" order="12" weight="0.3295063" />
-      <window_info anchor="bottom" id="Messages" order="13" weight="0.3295063" />
+      <window_info anchor="bottom" id="Messages" order="13" weight="0.32911393" />
       <window_info anchor="bottom" id="Docker" order="14" show_stripe_button="false" />
       <window_info anchor="bottom" id="Database Changes" order="15" />
-      <window_info anchor="bottom" id="Terminal" order="16" weight="0.3295063" />
+      <window_info anchor="bottom" id="Terminal" order="16" weight="0.32796317" />
+      <window_info anchor="bottom" id="Inspection Results" order="17" weight="0.32911393" />
+      <window_info anchor="bottom" id="CheckStyle" order="18" weight="0.32911393" />
       <window_info anchor="right" id="Commander" internal_type="SLIDING" order="0" type="SLIDING" weight="0.4" />
-      <window_info anchor="right" id="Ant Build" order="1" weight="0.25" />
+      <window_info anchor="right" id="Ant Build" order="1" weight="0.2497332" />
       <window_info anchor="right" content_ui="combo" id="Hierarchy" order="2" weight="0.25" />
       <window_info anchor="right" id="JetGradle" order="3" />
       <window_info anchor="right" id="Database" order="4" />
@@ -454,7 +645,50 @@
       <window_info anchor="right" id="Palette&#9;" order="9" />
       <window_info anchor="right" id="Theme Preview" order="10" />
       <window_info anchor="right" id="Coverage" order="11" side_tool="true" weight="0.32977587" />
+      <window_info anchor="right" id="Key Promoter X" order="12" />
     </layout>
+    <layout-to-restore>
+      <window_info active="true" content_ui="combo" id="Project" order="0" sideWeight="0.6703755" visible="true" weight="0.19210246" />
+      <window_info id="Structure" order="1" weight="0.25" />
+      <window_info id="Favorites" order="2" weight="0.32977587" />
+      <window_info id="Designer" order="3" />
+      <window_info id="Image Layers" order="4" />
+      <window_info id="Capture Tool" order="5" />
+      <window_info id="UI Designer" order="6" />
+      <window_info id="Learn" order="7" />
+      <window_info anchor="bottom" id="Message" order="0" />
+      <window_info anchor="bottom" id="Find" order="1" weight="0.32911393" />
+      <window_info anchor="bottom" id="Run" order="2" weight="0.30264673" />
+      <window_info anchor="bottom" id="Debug" order="3" weight="0.4004603" />
+      <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
+      <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
+      <window_info anchor="bottom" id="TODO" order="6" weight="0.32911393" />
+      <window_info anchor="bottom" id="Application Servers" order="7" />
+      <window_info anchor="bottom" id="Version Control" order="8" />
+      <window_info anchor="bottom" id="Problems" order="9" />
+      <window_info anchor="bottom" id="Changes" order="10" />
+      <window_info anchor="bottom" id="Profiler" order="11" />
+      <window_info anchor="bottom" id="Event Log" order="12" weight="0.3295063" />
+      <window_info anchor="bottom" id="Messages" order="13" weight="0.32911393" />
+      <window_info anchor="bottom" id="Docker" order="14" show_stripe_button="false" />
+      <window_info anchor="bottom" id="Database Changes" order="15" />
+      <window_info anchor="bottom" id="Terminal" order="16" weight="0.32796317" />
+      <window_info anchor="bottom" id="Inspection Results" order="17" weight="0.32911393" />
+      <window_info anchor="bottom" id="CheckStyle" order="18" weight="0.32911393" />
+      <window_info anchor="right" id="Commander" internal_type="SLIDING" order="0" type="SLIDING" weight="0.4" />
+      <window_info anchor="right" id="Ant Build" order="1" weight="0.2497332" />
+      <window_info anchor="right" content_ui="combo" id="Hierarchy" order="2" weight="0.25" />
+      <window_info anchor="right" id="JetGradle" order="3" />
+      <window_info anchor="right" id="Database" order="4" />
+      <window_info anchor="right" id="Palette" order="5" />
+      <window_info anchor="right" id="Maven Projects" order="6" />
+      <window_info anchor="right" id="Maven" order="7" />
+      <window_info anchor="right" id="Capture Analysis" order="8" />
+      <window_info anchor="right" id="Palette&#9;" order="9" />
+      <window_info anchor="right" id="Theme Preview" order="10" />
+      <window_info anchor="right" id="Coverage" order="11" side_tool="true" weight="0.32977587" />
+      <window_info anchor="right" id="Key Promoter X" order="12" />
+    </layout-to-restore>
   </component>
   <component name="TypeScriptGeneratedFilesManager">
     <option name="version" value="1" />
@@ -467,8 +701,8 @@
     <breakpoint-manager>
       <breakpoints>
         <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/src/sample/ServerController.java</url>
-          <line>85</line>
+          <url>file://$PROJECT_DIR$/src/sample/RSA.java</url>
+          <line>60</line>
           <properties />
           <option name="timeStamp" value="6" />
         </line-breakpoint>
@@ -480,14 +714,6 @@
     <option name="FILTER_TARGETS" value="false" />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/src/sample/scene.fxml">
-      <provider editor-type-id="JavaFX-Scene-Builder" />
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="237">
-          <caret line="23" column="126" selection-start-line="23" selection-start-column="114" selection-end-line="23" selection-end-column="126" />
-        </state>
-      </provider>
-    </entry>
     <entry file="jar://$USER_HOME$/Downloads/jdk-8u201-linux-x64/jdk1.8.0_201/javafx-src.zip!/javafx/collections/FXCollections.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="157">
@@ -498,13 +724,155 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/src/sample/Generator.java" />
+    <entry file="file://$PROJECT_DIR$/src/sample/publicKeys.txt" />
+    <entry file="file://$PROJECT_DIR$/PublicKeys/Profesor.txt" />
+    <entry file="file://$PROJECT_DIR$/PublicKeys/Bartosz.txt" />
+    <entry file="file://$PROJECT_DIR$/src/sample/scene.fxml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="345">
+          <caret line="23" column="78" lean-forward="true" selection-start-line="23" selection-start-column="55" selection-end-line="23" selection-end-column="78" />
+        </state>
+      </provider>
+      <provider editor-type-id="JavaFX-Scene-Builder" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/PublicKeys/Lukasz.txt" />
+    <entry file="file://$PROJECT_DIR$/src/sample/RSAkeys.java" />
+    <entry file="file://$PROJECT_DIR$/src/sample/client.fxml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="375">
+          <caret line="25" column="97" selection-start-line="25" selection-start-column="86" selection-end-line="25" selection-end-column="97" />
+        </state>
+      </provider>
+      <provider editor-type-id="JavaFX-Scene-Builder" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/sample/ClientController.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="270">
+          <caret line="25" column="8" selection-start-line="25" selection-start-column="8" selection-end-line="25" selection-end-column="8" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/sample/users.txt" />
+    <entry file="file://$PROJECT_DIR$/src/sample/server.fxml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="495">
+          <caret line="33" column="111" selection-start-line="33" selection-start-column="111" selection-end-line="33" selection-end-column="111" />
+        </state>
+      </provider>
+      <provider editor-type-id="JavaFX-Scene-Builder" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Tests/Tests.java" />
+    <entry file="file://$PROJECT_DIR$/src/sample/Main.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state>
+          <caret selection-end-column="15" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="jar://$USER_HOME$/Downloads/jdk-8u201-linux-x64/jdk1.8.0_201/src.zip!/java/util/function/BiConsumer.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="182">
+          <caret line="52" column="9" selection-start-line="52" selection-start-column="9" selection-end-line="52" selection-end-column="9" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/sample/ControlerFactory.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="255">
+          <caret line="17" column="5" lean-forward="true" selection-start-line="17" selection-start-column="5" selection-end-line="17" selection-end-column="5" />
+          <folding>
+            <element signature="e#494#512#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/sample/Control.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="120">
+          <caret line="8" lean-forward="true" selection-start-line="8" selection-end-line="8" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/sample/Controller.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="585">
+          <caret line="47" column="5" lean-forward="true" selection-start-line="47" selection-start-column="5" selection-end-line="47" selection-end-column="5" />
+          <folding>
+            <element signature="imports" expanded="true" />
+            <element signature="method#selectFile#0;class#Controller#0" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/sample/Tests.java" />
+    <entry file="file://$PROJECT_DIR$/src/sample/test/RSATest.java" />
+    <entry file="jar://$USER_HOME$/Downloads/jdk-8u201-linux-x64/jdk1.8.0_201/src.zip!/java/security/KeyPairGenerator.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="153">
+          <caret line="211" column="25" lean-forward="true" selection-start-line="211" selection-start-column="25" selection-end-line="211" selection-end-column="25" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="jar://$USER_HOME$/Downloads/jdk-8u201-linux-x64/jdk1.8.0_201/jre/lib/rt.jar!/org/jcp/xml/dsig/internal/dom/XMLDSigRI.class">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="164">
+          <caret line="17" selection-start-line="17" selection-end-line="17" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/sample/TransferTarget.java" />
+    <entry file="jar://$USER_HOME$/Downloads/jdk-8u201-linux-x64/jdk1.8.0_201/javafx-src.zip!/javafx/event/EventType.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="164">
+          <caret line="157" selection-start-line="157" selection-end-line="157" />
+          <folding>
+            <element signature="e#4603#4604#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="jar://$USER_HOME$/Downloads/jdk-8u201-linux-x64/jdk1.8.0_201/javafx-src.zip!/javafx/scene/Scene.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="329">
+          <caret line="3760" selection-start-line="3760" selection-end-line="3760" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="jar://$USER_HOME$/Downloads/jdk-8u201-linux-x64/jdk1.8.0_201/javafx-src.zip!/javafx/scene/control/Button.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="183">
+          <caret line="186" selection-start-line="186" selection-end-line="186" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="jar://$USER_HOME$/Downloads/jdk-8u201-linux-x64/jdk1.8.0_201/javafx-src.zip!/javafx/scene/Node.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="183">
+          <caret line="8411" selection-start-line="8411" selection-end-line="8411" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="jar://$USER_HOME$/Downloads/jdk-8u201-linux-x64/jdk1.8.0_201/javafx-src.zip!/javafx/event/Event.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="359">
+          <caret line="197" selection-start-line="197" selection-end-line="197" />
+          <folding>
+            <element signature="e#4362#4363#0" expanded="true" />
+            <element signature="e#4393#4394#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
     <entry file="jar://$USER_HOME$/Downloads/jdk-8u201-linux-x64/jdk1.8.0_201/javafx-src.zip!/javafx/fxml/FXMLLoader.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="172">
-          <caret line="1773" selection-start-line="1773" selection-end-line="1773" />
+        <state relative-caret-position="156">
+          <caret line="1657" selection-start-line="1657" selection-end-line="1657" />
           <folding>
-            <element signature="e#71768#71776#0" expanded="true" />
-            <element signature="e#71835#71853#0" expanded="true" />
+            <element signature="e#66921#66922#0" expanded="true" />
             <element signature="e#79010#79011#0" expanded="true" />
             <element signature="e#79046#79047#0" expanded="true" />
             <element signature="e#79248#79249#0" expanded="true" />
@@ -519,126 +887,119 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/sample/Control.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="75">
-          <caret line="5" column="4" selection-start-line="5" selection-start-column="4" selection-end-line="5" selection-end-column="4" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/sample/ControlerFactory.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="255">
-          <caret line="17" column="5" lean-forward="true" selection-start-line="17" selection-start-column="5" selection-end-line="17" selection-end-column="5" />
-          <folding>
-            <element signature="e#275#287#0" expanded="true" />
-            <element signature="e#357#369#0" expanded="true" />
-            <element signature="e#494#512#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/sample/server.fxml">
-      <provider editor-type-id="JavaFX-Scene-Builder" />
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="270">
-          <caret line="18" column="14" lean-forward="true" selection-start-line="18" selection-start-column="14" selection-end-line="18" selection-end-column="14" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/sample/Main.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="390">
-          <caret line="30" column="45" selection-start-line="30" selection-start-column="45" selection-end-line="30" selection-end-column="45" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/sample/Window.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="90">
-          <caret line="11" column="23" selection-start-line="11" selection-start-column="23" selection-end-line="11" selection-end-column="23" />
+        <state relative-caret-position="299">
+          <caret line="119" column="101" lean-forward="true" selection-start-line="119" selection-start-column="36" selection-end-line="119" selection-end-column="101" />
           <folding>
             <element signature="imports" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/sample/ClientController.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="255">
-          <caret line="25" column="66" selection-start-line="25" selection-start-column="66" selection-end-line="25" selection-end-column="66" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/sample/Decryptor.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="75">
-          <caret line="11" selection-start-line="11" selection-end-line="11" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/sample/client.fxml">
-      <provider editor-type-id="JavaFX-Scene-Builder" />
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="375">
-          <caret line="25" column="97" selection-start-line="25" selection-start-column="86" selection-end-line="25" selection-end-column="97" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/sample/Controller.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="300">
-          <caret line="20" selection-start-line="20" selection-end-line="20" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/sample/Generator.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="90">
-          <caret line="6" column="12" selection-start-line="6" selection-start-column="12" selection-end-line="6" selection-end-column="12" />
-          <folding>
-            <element signature="e#319#320#0" expanded="true" />
-            <element signature="e#373#374#0" expanded="true" />
-            <element signature="e#566#567#0" expanded="true" />
-            <element signature="e#597#598#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/sample/ServerController.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="339">
-          <caret line="85" selection-start-line="85" selection-end-line="85" />
-          <folding>
-            <element signature="e#3446#3447#0" expanded="true" />
-            <element signature="e#3480#3481#0" expanded="true" />
+            <element signature="method#launchHome#0;class#Window#0" />
+            <element signature="method#launchClient#0;class#Window#0" />
+            <element signature="method#launchServer#0;class#Window#0" />
+            <element signature="method#launchView#0;class#Window#0" />
           </folding>
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/sample/Encryptor.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="285">
-          <caret line="19" selection-start-line="19" selection-end-line="19" />
+        <state relative-caret-position="360">
+          <caret line="26" column="143" selection-start-line="26" selection-start-column="143" selection-end-line="26" selection-end-column="143" />
           <folding>
             <element signature="imports" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/src/sample/ServerController.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="277">
+          <caret line="39" column="9" selection-start-line="39" selection-start-column="9" selection-end-line="39" selection-end-column="9" />
+          <folding>
+            <element signature="method#initialize#0;class#ServerController#0" />
+            <element signature="method#goBack#0;class#ServerController#0" />
+            <element signature="method#initializeModeSelection#0;class#ServerController#0" />
+            <element signature="method#chooseSrc#0;class#ServerController#0" />
+            <element signature="method#encryptFile#0;class#ServerController#0" />
+            <element signature="method#errorMessage#0;class#ServerController#0" />
+            <element signature="method#transferClients#0;class#ServerController#0" />
+            <element signature="method#readPublicKeys#0;class#ServerController#0" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/sample/Header.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="300">
+          <caret line="20" column="31" lean-forward="true" selection-start-line="20" selection-start-column="31" selection-end-line="20" selection-end-column="31" />
+          <folding>
+            <element signature="imports" expanded="true" />
+            <element signature="method#toBytes#0;class#Header#0" />
+            <element signature="method#toHeader#0;class#Header#0" />
+            <element signature="method#toString#0;class#Header#0" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/README.txt">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="285">
+          <caret line="19" selection-start-line="19" selection-end-line="19" />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/src/sample/AES.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="330">
-          <caret line="22" column="14" selection-start-line="22" selection-start-column="14" selection-end-line="22" selection-end-column="14" />
+        <state relative-caret-position="349">
+          <caret line="50" column="22" selection-start-line="50" selection-start-column="22" selection-end-line="50" selection-end-column="22" />
+          <folding>
+            <element signature="imports" expanded="true" />
+            <element signature="method#randomInitVector#0;class#AES#0" />
+            <element signature="method#generateSessionKey#0;class#AES#0" />
+            <element signature="method#encrypt#0;class#AES#0" />
+            <element signature="method#decrypt#0;class#AES#0" />
+            <element signature="method#encrypt#1;class#AES#0" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/sample/Decryptor.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="255">
+          <caret line="17" selection-start-line="17" selection-end-line="17" />
+          <folding>
+            <element signature="imports" expanded="true" />
+            <element signature="method#decrypt#0;class#Decryptor#0" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/sample/RSA.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="262">
+          <caret line="67" column="35" lean-forward="true" selection-start-line="67" selection-start-column="35" selection-end-line="67" selection-end-column="35" />
+          <folding>
+            <element signature="imports" expanded="true" />
+            <element signature="method#cryptography#0;class#RSA#0" />
+            <element signature="method#enc#0;class#RSA#0" />
+            <element signature="method#encryptWithRSA#0;class#RSA#0" />
+            <element signature="method#decryptWithRSA#0;class#RSA#0" />
+            <element signature="e#2620#2626#0" expanded="true" />
+            <element signature="method#generateKeyPair#0;class#RSA#0" />
+            <element signature="method#readPublicKey#0;class#RSA#0" />
+            <element signature="method#readFile#0;class#RSA#0" />
+            <element signature="method#bytesToPublicKey#0;class#RSA#0" />
+            <element signature="method#bytesToPrivateKey#0;class#RSA#0" />
+            <element signature="method#sha256#0;class#RSA#0" />
+            <element signature="method#toFile#0;class#RSA#0" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/sample/test/AESTest.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="404">
+          <caret line="65" column="27" selection-start-line="65" selection-start-column="27" selection-end-line="65" selection-end-column="27" />
           <folding>
             <element signature="imports" expanded="true" />
           </folding>

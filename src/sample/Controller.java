@@ -53,7 +53,7 @@ public class Controller implements Control {
 
     @FXML
     void testFunctionality() throws NoSuchAlgorithmException, IOException, InvalidKeySpecException {
-        RSA.readPublicKey("Marcin");
+        RSA.sha256("admin");
     }
 
 }
