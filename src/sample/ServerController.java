@@ -1,9 +1,12 @@
 package sample;
 
+import javafx.application.Platform;
 import javafx.beans.value.ChangeListener;
 import javafx.beans.value.ObservableValue;
 import javafx.collections.ObservableList;
+import javafx.concurrent.Task;
 import javafx.event.ActionEvent;
+import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.scene.control.Alert;
 import javafx.scene.control.ChoiceBox;
@@ -11,13 +14,16 @@ import javafx.scene.control.Label;
 import javafx.scene.control.ListView;
 import javafx.stage.FileChooser;
 import javafx.stage.Stage;
+import javafx.stage.WindowEvent;
+import sun.nio.ch.ThreadPool;
 
 import java.io.*;
 import java.security.Key;
 import java.security.NoSuchAlgorithmException;
-import java.security.PublicKey;
 import java.security.spec.InvalidKeySpecException;
 import java.util.*;
+import java.util.concurrent.ExecutorService;
+import java.util.concurrent.Executors;
 
 public class ServerController implements Control {
 
@@ -31,6 +37,12 @@ public class ServerController implements Control {
 
     private Window window;
 
+    TCPServer server;
+
+    Map<String, Collection<Byte>> encryptedData;
+
+    ExecutorService executorService;
+
     @FXML
     ListView clientList, receiversList;
 
@@ -41,21 +53,39 @@ public class ServerController implements Control {
     private ChoiceBox<String> subBlockChoiceBox;
 
     @FXML
-    private void initialize() {
+    private void initialize() throws Exception {
+        server = new TCPServer(9000);
+        Task nasluchiwanie = server;
+        executorService = Executors.newFixedThreadPool(1);
+        executorService.execute(nasluchiwanie);
         this.window = new Window();
         initializeModeSelection();
         modeChoiceBox.setValue("ECB");
         modeChoiceBox.getItems().addAll("ECB", "CBC", "OFB", "CFB");
         subBlockChoiceBox.setValue("128");
         subBlockChoiceBox.getItems().addAll("8", "16", "32", "64", "128");
-        clientList.getItems().addAll("Lukasz", "Profesor", "Bartosz");
+        clientList.getItems().addAll(loadUsers());
         encryptor = new Encryptor();
     }
-
-
     @FXML
     void goBack() throws IOException {
         window.launchHome();
+    }
+
+    private Collection<String> loadUsers() {
+        File folder = new File("PrivateKeys");
+        File[] fileList = folder.listFiles();
+        Collection<String> users = new ArrayList<String>();
+        for (File f : fileList
+        ) {
+            String name = f.getName();
+            if (name.contains(".key")) {
+                name = name.split("Private")[1];
+                name = name.split("\\.")[0];
+                users.add(name);
+            }
+        }
+        return users;
     }
 
     private void initializeModeSelection() {
@@ -84,26 +114,53 @@ public class ServerController implements Control {
 
     @FXML
     void encryptFile(ActionEvent event) throws IOException, InvalidKeySpecException, NoSuchAlgorithmException {
+        System.out.println("Wchodze");
+        String mode = modeChoiceBox.getValue();
+        HashMap<String, Key> receivers = readPublicKeys(new ArrayList<String>(receiversList.getItems()));
+        if (validateInputFile() && validateFileSize() && !validateReceivers(receivers)) {
+            if (!subBlockChoiceBox.isDisabled()) {
+                mode = mode + subBlockChoiceBox.getValue();
+            }
+            System.out.println(mode + " - Tryb szyfrowania");
+            encryptor.setMode(mode);
+            encryptedData = encryptor.encrypt(file, receivers);
+            sendMessage();
+        }
+    }
+
+    private boolean validateInputFile() {
         if (file == null) {
             errorMessage("Problem with input file", "Choose file first");
-        } else if (file.length() <= 104857600 && file.length() >= 1024) {
-            String mode = modeChoiceBox.getValue();
-            HashMap<String, Key> receivers = readPublicKeys(new ArrayList<String>(receiversList.getItems()));
-            receivers.forEach((n, m) -> System.out.println(n + " " + m));
-            if (receivers.isEmpty() == true) {
-                errorMessage("No receivers", "Choose at least one receiver");
-            } else {
-                if (subBlockChoiceBox.isDisabled() == false) {
-                    mode = mode + subBlockChoiceBox.getValue();
-                }
-                System.out.println(mode + " - Tryb szyfrowania");
-                encryptor.setMode(mode);
-                encryptor.encrypt(file, receivers);
-            }
-        } else if (file.length() < 1024) {
+            return false;
+        }
+        return true;
+    }
+
+    private boolean validateFileSize() {
+        if (file.length() < 1024) {
             errorMessage("Input file too small", "Choose other file with size over 1kB");
+            return false;
         } else if (file.length() > 104857600) {
             errorMessage("Input file too large", "Choose other file with size less than 100MB");
+            return false;
+        }
+        return true;
+    }
+
+    private boolean validateReceivers(HashMap<String, Key> receivers) {
+        if (receivers.isEmpty()) {
+            errorMessage("No receivers", "Choose at least one receiver");
+            return true;
+        }
+        return false;
+    }
+
+    private void sendMessage(){
+        try{
+            server.sendHeader(encryptedData);
+            server.sendFile("temporary.enc");
+        }catch(Exception e){
+            errorMessage("Blad mapy zaszyfrowanych uzytkownikow","Brak danych o zaszyfrowanych uzytkownikach");
         }
 
     }
@@ -127,6 +184,13 @@ public class ServerController implements Control {
         transferClients(clientList, receiversList);
     }
 
+    @FXML
+    void exitWindow() {
+        TCPServer.close();
+        executorService.shutdown();
+        stage.close();
+    }
+
     private void transferClients(ListView target, ListView source) {
         ObservableList<String> selectedList = source.getSelectionModel().getSelectedItems();
         if (selectedList != null) {
@@ -143,4 +207,5 @@ public class ServerController implements Control {
         }
         return receivers;
     }
+
 }

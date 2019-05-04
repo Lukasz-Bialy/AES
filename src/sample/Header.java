@@ -1,11 +1,7 @@
 package sample;
 
 import javax.crypto.SecretKey;
-import javax.crypto.spec.IvParameterSpec;
 import java.io.*;
-import java.security.Key;
-import java.util.HashMap;
-import java.util.List;
 
 public class Header implements Serializable {
     public String alghoritm;
@@ -14,16 +10,16 @@ public class Header implements Serializable {
     public String mode;
     public String format;
     public byte[] initVector;
-    public SecretKey secretKey;
+    public SecretKey sessionKey;
 
-    public Header(String alghoritm, int keySize, int blockSize, String mode, String format, byte[] initVector, SecretKey secretKey) {
+    public Header(String alghoritm, int keySize, int blockSize, String mode, String format, byte[] initVector, SecretKey sessionKey) {
         this.alghoritm = alghoritm;
         this.keySize = keySize;
         this.blockSize = blockSize;
         this.mode = mode;
         this.format = format;
         this.initVector = initVector;
-        this.secretKey = secretKey;
+        this.sessionKey = sessionKey;
     }
 
     public byte[] toBytes() {

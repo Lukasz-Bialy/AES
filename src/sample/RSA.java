@@ -81,15 +81,15 @@ public class RSA {
         return null;
     }
 
-    public static byte[] encryptWithRSA(Key publicKey, byte[] resource) {
-        return cryptography(publicKey, resource, Cipher.ENCRYPT_MODE);
-    }
+//    public static byte[] encryptWithRSA(Key publicKey, byte[] resource) {
+//        return cryptography(publicKey, resource, Cipher.ENCRYPT_MODE);
+//    }
 
-    public static byte[] decryptWithRSA(Key privateKey, byte[] resource) {
-        return cryptography(privateKey, resource, Cipher.DECRYPT_MODE);
-    }
+//    public static byte[] decryptWithRSA(Key privateKey, byte[] resource) {
+//        return cryptography(privateKey, resource, Cipher.DECRYPT_MODE);
+//    }
 
-    public static Map<String, Collection<Byte>> encryptWithRSA(String mode, HashMap<String, Key> receivers, SecretKey sessionKey, Header encryptionParams, byte[] initializationVector) {
+    public static Map<String, Collection<Byte>> encryptWithRSA(HashMap<String, Key> receivers, Header encryptionParams) {
         Map<String, Collection<Byte>> encryptedUserKeys = new HashMap<>();
         receivers.forEach((user, publicKey) -> {
             try {

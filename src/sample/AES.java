@@ -5,9 +5,6 @@ import javax.crypto.spec.IvParameterSpec;
 import javax.crypto.spec.SecretKeySpec;
 import java.io.*;
 import java.security.*;
-import java.security.interfaces.RSAPrivateKey;
-import java.security.spec.KeySpec;
-import java.util.*;
 
 public class AES {
 
@@ -43,7 +40,7 @@ public class AES {
     private static byte[] cryptography(SecretKeySpec skspec, byte[] privateKey, int mode) {
         Cipher cipher = null;
         try {
-            byte[] iv = { 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 };
+            byte[] iv = {0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0};
             IvParameterSpec ivspec = new IvParameterSpec(iv);
             cipher = Cipher.getInstance("AES/CBC/PKCS5Padding");
             cipher.init(mode, skspec, ivspec);
@@ -53,6 +50,24 @@ public class AES {
             e.printStackTrace();
         }
         return null;
+    }
+
+    public static void decrypt(Header header, byte[] inputFile, File output) {
+        IvParameterSpec ivspec = null;
+        Cipher cipher = null;
+        try {
+            cipher = Cipher.getInstance("AES/" + header.mode + "/PKCS5Padding");
+            if (header.mode.equals("ECB")) {
+                cipher.init(Cipher.DECRYPT_MODE, header.sessionKey);
+            } else {
+                ivspec = new IvParameterSpec(header.initVector);
+                cipher.init(Cipher.DECRYPT_MODE, header.sessionKey, ivspec);
+            }
+            File outputFile = new File(output.getAbsolutePath() + "." + header.format);
+            saveEncryptedFile(cipher, inputFile, outputFile);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
     }
 
     public static Header encrypt(String mode, File inputFile, SecretKey sessionKey, byte[] iv) {
@@ -67,9 +82,8 @@ public class AES {
                 ivspec = new IvParameterSpec(iv);
                 cipher.init(Cipher.ENCRYPT_MODE, sessionKey, ivspec);
             }
-            File outputFile = new File(inputFile + ".enc");
+            File outputFile = new File("temporary.enc");
             saveEncryptedFile(cipher, inputFile, outputFile);
-
         } catch (Exception e) {
             e.printStackTrace();
         }
@@ -77,6 +91,26 @@ public class AES {
         System.out.println(extension);
         Header encryptParams = new Header("AES", 128, 0, mode, extension, iv, sessionKey);
         return encryptParams;
+    }
+
+    private static void saveEncryptedFile(Cipher cipher, byte[] inputFile, File outputFile) {
+        FileOutputStream outputFileStream = null;
+        try {
+            outputFileStream = new FileOutputStream(outputFile);
+            InputStream inputFileStream = new ByteArrayInputStream(inputFile);
+            byte[] inputBuffer = new byte[1024];
+            int len;
+            while ((len = inputFileStream.read(inputBuffer)) != -1) { //-1 means EOF
+                byte[] outputBuffer = cipher.update(inputBuffer, 0, len);
+                if (outputBuffer != null)
+                    outputFileStream.write(outputBuffer);
+            }
+            byte[] outputBuffer = cipher.doFinal();
+            if (outputBuffer != null)
+                outputFileStream.write(outputBuffer);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
     }
 
     private static void saveEncryptedFile(Cipher cipher, File inputFile, File outputFile) {

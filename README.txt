@@ -8,7 +8,7 @@ Encryption alghoritm:
 4. AES.encrypt starts encryption
     4a) AES.encrypt() starts file encryption using "AES/" + mode + "/PKCS5Padding" and sessionKey also optionaly init vector
     4b) AES.processFile() writes byte blocks to output file in .enc format
-5. Encryptor creates Header object with info about message about alghoritm (keySize, blockSize, mode, format, session key, init vector)
+5. Encryptor creates Header object with info about message alghoritm (keySize, blockSize, mode, format, session key, init vector)
 6. Header is encrypted using RSA/ECB with padding and encrypts 256-byte blocks using every receiver public key
 
 Session Key:
