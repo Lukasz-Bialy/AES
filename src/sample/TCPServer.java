@@ -35,7 +35,7 @@ public class TCPServer extends Task<Boolean> {
         }
     }
 
-    static void close(){
+    static void close() {
         try {
             serverSocket.close();
             listening = false;
@@ -49,7 +49,7 @@ public class TCPServer extends Task<Boolean> {
         System.out.println("Server listening on port: " + port);
         initializeServerSocket();
         listening = true;
-        while(listening) {
+        while (listening) {
             try {
                 clientSocket = this.serverSocket.accept();
                 dOut = new DataOutputStream(clientSocket.getOutputStream());
@@ -58,8 +58,7 @@ public class TCPServer extends Task<Boolean> {
                 String greeting = dIn.readUTF();
                 if ("hello server".equals(greeting)) {
                     dOut.writeUTF("hello client");
-                }
-                else {
+                } else {
                     out.println("unrecognised greeting");
                 }
             } catch (Exception e) {
@@ -69,20 +68,34 @@ public class TCPServer extends Task<Boolean> {
         return false;
     }
 
-    public void sendHeader(Map<String, Collection<Byte>> receivers) throws IOException {
-        dOut.writeUTF("Header");
-        byte[] headerPrimitive = new byte[receivers.get("Tester2").toArray().length];
-        System.out.println();
+    public void sendHeaders(Map<String, Collection<Byte>> receivers) throws IOException {
+        dOut.writeUTF("Headers");
+        dOut.writeInt(receivers.size());
+        byte[] headerPrimitive = null;
+        String user = null;
+        for (Map.Entry<String, Collection<Byte>> entry : receivers.entrySet()) {
+            user = entry.getKey();
+            headerPrimitive = fillWithPrimitives(entry.getValue().toArray().length, entry.getValue());
+            System.out.println("Wysylam header dla uzytkownika: " + user);
+            sendOneHeader(user, headerPrimitive);
+        }
+    }
+
+    public byte[] fillWithPrimitives(int length, Collection<Byte> encryptedHeader) {
+        byte[] headerPrimitive = new byte[length];
         int i = 0;
-        for (Byte b:receivers.get("Tester2")
-             ) {
+        for (Byte b : encryptedHeader) {
             headerPrimitive[i] = b.byteValue();
-            System.out.print(b.byteValue()+" ");
             i++;
         }
-        dOut.writeInt(headerPrimitive.length);
+        return headerPrimitive;
+    }
+
+    public void sendOneHeader(String user, byte[] primitiveHeader) throws IOException {
+        dOut.writeUTF(user);
+        dOut.writeInt(primitiveHeader.length);
         dOut.flush();
-        dOut.write(headerPrimitive, 0, headerPrimitive.length);
+        dOut.write(primitiveHeader, 0, primitiveHeader.length);
         dOut.flush();
     }
 
@@ -93,13 +106,14 @@ public class TCPServer extends Task<Boolean> {
 
         dOut.writeInt(fileLengthBytes.length);
         dOut.write(fileLengthBytes);
-        byte[] fileInBytes = new byte[(int)file.length()];
+        byte[] fileInBytes = new byte[(int) file.length()];
         BufferedInputStream bis = new BufferedInputStream(new FileInputStream(file));
         bis.read(fileInBytes, 0, fileInBytes.length);
         dOut.write(fileInBytes);
+        file.delete();
     }
 
-    private byte[] longToByte(long length){
+    private byte[] longToByte(long length) {
         ByteBuffer buffer = ByteBuffer.allocate(Long.BYTES);
         buffer.putLong(length);
         return buffer.array();

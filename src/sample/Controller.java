@@ -12,8 +12,6 @@ import java.security.spec.InvalidKeySpecException;
 
 public class Controller implements Control {
 
-
-
     @FXML
     private AnchorPane anchorp;
 
@@ -26,14 +24,7 @@ public class Controller implements Control {
     }
 
     @FXML
-    void selectFile(ActionEvent event) {
-        FileChooser filec= new FileChooser();
-        filec.setTitle("Open Resource File");
-        filec.showOpenDialog(stage);
-    }
-
-    @FXML
-    void launchClient() throws Exception{
+    void launchClient() throws Exception {
         window.launchClient();
     }
 
@@ -47,13 +38,7 @@ public class Controller implements Control {
         window.launchKeyGenerator();
     }
 
-    public void setStage(Stage stage){
+    public void setStage(Stage stage) {
         this.stage = stage;
     }
-
-    @FXML
-    void testFunctionality() throws NoSuchAlgorithmException, IOException, InvalidKeySpecException {
-        RSA.sha256("admin");
-    }
-
 }

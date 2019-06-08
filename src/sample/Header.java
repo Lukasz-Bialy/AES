@@ -4,6 +4,11 @@ import javax.crypto.SecretKey;
 import java.io.*;
 
 public class Header implements Serializable {
+    public void setUser(String user) {
+        this.user = user;
+    }
+
+    public String user;
     public String alghoritm;
     public int keySize;
     public int blockSize;
@@ -51,6 +56,7 @@ public class Header implements Serializable {
     @Override
     public String toString() {
         return "Header{" +
+                "user='" + user + '\'' +
                 "alghoritm='" + alghoritm + '\'' +
                 ", keySize='" + keySize + '\'' +
                 ", blockSize='" + blockSize + '\'' +

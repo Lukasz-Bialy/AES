@@ -1,7 +1,10 @@
 package sample;
+
+import javafx.collections.ObservableList;
 import javafx.concurrent.Task;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.scene.control.Alert;
 import javafx.scene.control.Label;
 import javafx.scene.control.ListView;
 import javafx.scene.control.TextField;
@@ -10,27 +13,41 @@ import javafx.stage.Stage;
 import sun.security.krb5.EncryptedData;
 
 import java.io.*;
+import java.lang.reflect.Array;
 import java.net.Socket;
 import java.util.ArrayList;
 import java.util.Collection;
+import java.util.HashMap;
+import java.util.Map;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 
 public class ClientController implements Control {
 
     private Socket clientSocket;
+
     private Stage stage;
+
     @FXML
     private Label pathLabel;
 
+    ExecutorService executorService;
+
+    @FXML
+    TextField passwordField;
+
     File folder;
+
     @FXML
     ListView receiversList;
+
+    ArrayList<String> users;
 
     @FXML
     TextField filename;
 
     private Decryptor decryptor;
+
     private Window window = new Window();
 
     TCPClient client;
@@ -41,56 +58,74 @@ public class ClientController implements Control {
     }
 
     @FXML
-    private void initialize() {
-        client = new TCPClient(9000);
+    private void initialize() throws Exception {
+        /*client = new TCPClient(9000);
         Task nasluchiwanie = client;
         ExecutorService executorService = Executors.newFixedThreadPool(1);
-        executorService.execute(nasluchiwanie);
+        executorService.execute(nasluchiwanie);*/
         this.window = new Window();
-        receiversList.getItems().addAll(loadUsers());
+        users = new ArrayList<>();
+        loadUsers("/home/lukasz/IdeaProjects/BSK/users.txt");
+        receiversList.getItems().addAll(users);
     }
-    @FXML
-    boolean checkConnection() {
-        try {
-            DataOutputStream outToServer = new DataOutputStream(clientSocket.getOutputStream());
-            BufferedReader inFromServer = new BufferedReader(new InputStreamReader(clientSocket.getInputStream()));
-            outToServer.writeBytes("Hello Server");
-            inFromServer.readLine();
-            System.out.println(inFromServer);
 
-            return true;
-        } catch (IOException e) {
-            e.printStackTrace();
+    private void loadUsers(String path) throws Exception {
+        File file = new File(path);
+        BufferedReader reader = null;
+        reader = new BufferedReader(new FileReader(file));
+        String line;
+        while ((line = reader.readLine()) != null) {
+            users.add(line);
         }
-        return false;
     }
 
-    private Collection<String> loadUsers(){
-        File folder = new File("PublicKeys");
-        File[] fileList = folder.listFiles();
-        Collection<String> users = new ArrayList<String>();
-        for (File f:fileList
-        ) {
-            String name = f.getName();
-            if(name.contains(".key")){
-                name = name.split("Public")[1];
-                name = name.split("\\.")[0];
-                users.add(name);
-            }
+    @FXML
+    void decryptFile(ActionEvent event) {
+        String user = selectUser();
+        String password = passwordField.getText();
+        if (validateFolder() && validateUser(user) && validatePassword(password)) {
+            decryptor = new Decryptor(folder.getAbsolutePath() + "/" + filename.getText());
+            System.out.println(folder.getAbsolutePath() + "/" + filename.getText());
+            decryptor.decrypt(user, client.receivers.get(user).header, client.file, password);
+        } else {
+            errorMessage("Authentication failed", "Wrong username or password");
         }
-        return users;
     }
 
-    @FXML
-    void decryptFile(ActionEvent event){
-        decryptor = new Decryptor(folder.getAbsolutePath()+"/"+filename.getText());
-        System.out.println(folder.getAbsolutePath()+"/"+filename.getText());
-        decryptor.decrypt("Tester2", client.header, client.file);
+    boolean validateFolder() {
+        if (folder == null) {
+            errorMessage("Empty localization", "Choose localization");
+            return false;
+        }
+        return true;
     }
 
-    @FXML
-    void testAction() {
+    boolean validateUser(String user) {
+        System.out.println(user);
+        if (user == null) {
+            errorMessage("User", "Choose user from the list");
+            return false;
+        } else if (!client.receivers.containsKey(user)) {
+            errorMessage(user, "Ten użytkownik nie jest upoważniony do pliku");
+            return false;
+        }
+        return true;
+    }
 
+    boolean validatePassword(String password) {
+        if (password.isEmpty()) {
+            errorMessage("Password", "Insert password");
+            return false;
+        }
+        return true;
+    }
+
+    private String selectUser() {
+        ArrayList<String> list = new ArrayList<>(receiversList.getSelectionModel().getSelectedItems());
+        if (list.isEmpty()) {
+            return null;
+        }
+        return list.get(0);
     }
 
     @FXML
@@ -98,12 +133,25 @@ public class ClientController implements Control {
         DirectoryChooser dirchooser = new DirectoryChooser();
         dirchooser.setTitle("Open Resource File");
         folder = dirchooser.showDialog(stage);
-        if(folder != null){
+        if (folder != null) {
             pathLabel.setText(folder.getAbsolutePath());
         }
     }
 
-    public void setStage(Stage stage){
+    public void setStage(Stage stage) {
         this.stage = stage;
+    }
+
+    private void errorMessage(String header, String text) {
+        Alert errorAlert = new Alert(Alert.AlertType.ERROR);
+        errorAlert.setHeaderText(header);
+        errorAlert.setContentText(text);
+        errorAlert.showAndWait();
+    }
+
+    public void exitWindow(ActionEvent actionEvent) {
+        TCPClient.close();
+        executorService.shutdown();
+        stage.close();
     }
 }

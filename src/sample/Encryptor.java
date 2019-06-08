@@ -1,6 +1,9 @@
 package sample;
 
 
+import javafx.application.Platform;
+import javafx.scene.control.ProgressBar;
+
 import javax.crypto.SecretKey;
 import java.io.File;
 import java.net.ServerSocket;
@@ -19,12 +22,13 @@ public class Encryptor extends AES {
         this.mode = mode;
     }
 
-
-    public Map<String, Collection<Byte>> encrypt(File inputFile, HashMap<String, Key> receivers) {
+    public Map<String, Collection<Byte>> encrypt(File inputFile, HashMap<String, Key> receivers, ProgressBar progressBar) {
         try {
             SecretKey sessionKey = AES.generateSessionKey();
+            progressBar.setProgress(0.1);
             byte[] initializationVector = AES.randomInitVector();
-            Header header = AES.encrypt(mode, inputFile, sessionKey, initializationVector);
+            progressBar.setProgress(0.2);
+            Header header = AES.encrypt(mode, inputFile, sessionKey, initializationVector, progressBar);
             Map<String, Collection<Byte>> encryptedSessionKeys = RSA.encryptWithRSA(receivers, header);
             return encryptedSessionKeys;
         } catch (Exception e) {

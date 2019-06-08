@@ -35,7 +35,7 @@ public class AESTest {
         }
     }
 
-    @Test
+   /* @Test
     public void readKeyFromFile() {
             assertArrayEquals(afterRead, beforeRead);
     }
@@ -62,6 +62,9 @@ public class AESTest {
         byte[] decryptedHeader = RSA.decryptHeader(RSA.bytesToPrivateKey(encAfter), encryptedHeader);
         Header afterDec = Header.toHeader(decryptedHeader);
         assertArrayEquals(afterDec.toBytes(), header.toBytes());
+    }*/
+    @Test void sha256() {
+        System.out.println(RSA.sha256("admin"));
     }
 
 }

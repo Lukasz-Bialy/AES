@@ -1,5 +1,8 @@
 package sample;
 
+import javafx.application.Platform;
+import javafx.scene.control.ProgressBar;
+
 import javax.crypto.*;
 import javax.crypto.spec.IvParameterSpec;
 import javax.crypto.spec.SecretKeySpec;
@@ -22,34 +25,28 @@ public class AES {
             keyGenerator = KeyGenerator.getInstance("AES");//Generowanie Klucza sesyjnego
             keyGenerator.init(128);
             sessionKey = keyGenerator.generateKey();
-            System.out.println(sessionKey);
         } catch (NoSuchAlgorithmException e) {
             e.printStackTrace();
         }
         return sessionKey;
     }
 
-    public static byte[] encrypt(SecretKeySpec skspec, byte[] privateKey) {
+    public static byte[] encrypt(SecretKeySpec skspec, byte[] privateKey) throws Exception {
         return cryptography(skspec, privateKey, Cipher.ENCRYPT_MODE);
     }
 
-    public static byte[] decrypt(SecretKeySpec skspec, byte[] privateKey) {
+    public static byte[] decrypt(SecretKeySpec skspec, byte[] privateKey) throws Exception {
         return cryptography(skspec, privateKey, Cipher.DECRYPT_MODE);
     }
 
-    private static byte[] cryptography(SecretKeySpec skspec, byte[] privateKey, int mode) {
+    private static byte[] cryptography(SecretKeySpec skspec, byte[] privateKey, int mode) throws Exception {
         Cipher cipher = null;
-        try {
-            byte[] iv = {0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0};
-            IvParameterSpec ivspec = new IvParameterSpec(iv);
-            cipher = Cipher.getInstance("AES/CBC/PKCS5Padding");
-            cipher.init(mode, skspec, ivspec);
-            byte[] cryptoPrivate = cipher.doFinal(privateKey);
-            return cryptoPrivate;
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
-        return null;
+        byte[] iv = {0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0};
+        IvParameterSpec ivspec = new IvParameterSpec(iv);
+        cipher = Cipher.getInstance("AES/CBC/PKCS5Padding");
+        cipher.init(mode, skspec, ivspec);
+        byte[] cryptoPrivate = cipher.doFinal(privateKey);
+        return cryptoPrivate;
     }
 
     public static void decrypt(Header header, byte[] inputFile, File output) {
@@ -70,7 +67,7 @@ public class AES {
         }
     }
 
-    public static Header encrypt(String mode, File inputFile, SecretKey sessionKey, byte[] iv) {
+    public static Header encrypt(String mode, File inputFile, SecretKey sessionKey, byte[] iv, ProgressBar progressBar) {
         IvParameterSpec ivspec = null;
         Cipher cipher = null;
         try {
@@ -83,12 +80,12 @@ public class AES {
                 cipher.init(Cipher.ENCRYPT_MODE, sessionKey, ivspec);
             }
             File outputFile = new File("temporary.enc");
-            saveEncryptedFile(cipher, inputFile, outputFile);
+            saveEncryptedFile(cipher, inputFile, outputFile, progressBar);
         } catch (Exception e) {
             e.printStackTrace();
         }
         String extension = inputFile.getName().substring(inputFile.getName().lastIndexOf('.') + 1);
-        System.out.println(extension);
+        System.out.println("Extension: " + extension);
         Header encryptParams = new Header("AES", 128, 0, mode, extension, iv, sessionKey);
         return encryptParams;
     }
@@ -113,23 +110,35 @@ public class AES {
         }
     }
 
-    private static void saveEncryptedFile(Cipher cipher, File inputFile, File outputFile) {
-        FileOutputStream outputFileStream = null;
-        try {
-            outputFileStream = new FileOutputStream(outputFile);
-            FileInputStream inputFileStream = new FileInputStream(inputFile);
-            byte[] inputBuffer = new byte[1024];
-            int len;
-            while ((len = inputFileStream.read(inputBuffer)) != -1) { //-1 means EOF
-                byte[] outputBuffer = cipher.update(inputBuffer, 0, len);
-                if (outputBuffer != null)
-                    outputFileStream.write(outputBuffer);
+    private static void saveEncryptedFile(Cipher cipher, File inputFile, File outputFile, ProgressBar progressBar) {
+        new Thread() {
+            public void run() {
+                FileOutputStream outputFileStream = null;
+                try {
+                    outputFileStream = new FileOutputStream(outputFile);
+                    FileInputStream inputFileStream = new FileInputStream(inputFile);
+                    double singleProgress = 0.7 / (inputFile.length() / 1024);
+
+                    double progress = 0.3;
+                    byte[] inputBuffer = new byte[1024];
+                    int len;
+                    while ((len = inputFileStream.read(inputBuffer)) != -1) { //-1 means EOF
+                        byte[] outputBuffer = cipher.update(inputBuffer, 0, len);
+                        if (outputBuffer != null)
+                            outputFileStream.write(outputBuffer);
+                        progress += singleProgress;
+                        final double prog = progress;
+                        Platform.runLater(() -> progressBar.setProgress(prog));
+                        // progressBar.setProgress(progress);
+                    }
+                    byte[] outputBuffer = cipher.doFinal();
+                    if (outputBuffer != null)
+                        outputFileStream.write(outputBuffer);
+                } catch (Exception e) {
+                    e.printStackTrace();
+                }
             }
-            byte[] outputBuffer = cipher.doFinal();
-            if (outputBuffer != null)
-                outputFileStream.write(outputBuffer);
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
+        }.start();
+
     }
 }

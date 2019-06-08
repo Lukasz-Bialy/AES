@@ -81,19 +81,12 @@ public class RSA {
         return null;
     }
 
-//    public static byte[] encryptWithRSA(Key publicKey, byte[] resource) {
-//        return cryptography(publicKey, resource, Cipher.ENCRYPT_MODE);
-//    }
-
-//    public static byte[] decryptWithRSA(Key privateKey, byte[] resource) {
-//        return cryptography(privateKey, resource, Cipher.DECRYPT_MODE);
-//    }
-
-    public static Map<String, Collection<Byte>> encryptWithRSA(HashMap<String, Key> receivers, Header encryptionParams) {
+    public static Map<String, Collection<Byte>> encryptWithRSA(HashMap<String, Key> receivers, Header header) {
         Map<String, Collection<Byte>> encryptedUserKeys = new HashMap<>();
         receivers.forEach((user, publicKey) -> {
             try {
-                byte[] encodedHeaderArray = encryptHeader(publicKey, encryptionParams.toBytes());
+                header.setUser(user);
+                byte[] encodedHeaderArray = encryptHeader(publicKey, header.toBytes());
                 Collection<Byte> encodedHeaderList = new ArrayList<Byte>();
                 for (byte b : encodedHeaderArray
                 ) {
@@ -131,7 +124,6 @@ public class RSA {
         try {
             kf = KeyFactory.getInstance("RSA");
             PublicKey publicKey = kf.generatePublic(ks);
-            out.println(publicKey);
             return publicKey;
         } catch (Exception e) {
             e.printStackTrace();
@@ -139,7 +131,7 @@ public class RSA {
         return null;
     }
 
-    public static PrivateKey bytesToPrivateKey(byte[] bytes) {
+    public static PrivateKey bytesToPrivateKey(byte[] bytes) throws BadPaddingException{
         PKCS8EncodedKeySpec ks = new PKCS8EncodedKeySpec(bytes);
         KeyFactory kf = null;
         try {

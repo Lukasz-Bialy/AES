@@ -1,27 +1,24 @@
 package sample;
 
-import javafx.application.Platform;
 import javafx.beans.value.ChangeListener;
 import javafx.beans.value.ObservableValue;
 import javafx.collections.ObservableList;
 import javafx.concurrent.Task;
 import javafx.event.ActionEvent;
-import javafx.event.EventHandler;
 import javafx.fxml.FXML;
-import javafx.scene.control.Alert;
-import javafx.scene.control.ChoiceBox;
-import javafx.scene.control.Label;
-import javafx.scene.control.ListView;
+import javafx.scene.control.*;
 import javafx.stage.FileChooser;
 import javafx.stage.Stage;
-import javafx.stage.WindowEvent;
-import sun.nio.ch.ThreadPool;
 
-import java.io.*;
+import java.io.File;
+import java.io.IOException;
 import java.security.Key;
 import java.security.NoSuchAlgorithmException;
 import java.security.spec.InvalidKeySpecException;
-import java.util.*;
+import java.util.ArrayList;
+import java.util.Collection;
+import java.util.HashMap;
+import java.util.Map;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 
@@ -42,6 +39,9 @@ public class ServerController implements Control {
     Map<String, Collection<Byte>> encryptedData;
 
     ExecutorService executorService;
+
+    @FXML
+    ProgressBar progressBar;
 
     @FXML
     ListView clientList, receiversList;
@@ -67,6 +67,7 @@ public class ServerController implements Control {
         clientList.getItems().addAll(loadUsers());
         encryptor = new Encryptor();
     }
+
     @FXML
     void goBack() throws IOException {
         window.launchHome();
@@ -114,18 +115,24 @@ public class ServerController implements Control {
 
     @FXML
     void encryptFile(ActionEvent event) throws IOException, InvalidKeySpecException, NoSuchAlgorithmException {
-        System.out.println("Wchodze");
         String mode = modeChoiceBox.getValue();
         HashMap<String, Key> receivers = readPublicKeys(new ArrayList<String>(receiversList.getItems()));
         if (validateInputFile() && validateFileSize() && !validateReceivers(receivers)) {
             if (!subBlockChoiceBox.isDisabled()) {
                 mode = mode + subBlockChoiceBox.getValue();
             }
-            System.out.println(mode + " - Tryb szyfrowania");
+            System.out.println("Tryb szyfrowania: " + mode);
             encryptor.setMode(mode);
-            encryptedData = encryptor.encrypt(file, receivers);
-            sendMessage();
+            long timeBefore = System.currentTimeMillis();
+            encryptedData = encryptor.encrypt(file, receivers, progressBar);
+            long timeAfter = System.currentTimeMillis();
+            System.out.println("Time elapsed: " + (timeAfter-timeBefore));
         }
+    }
+
+    @FXML
+    void sendPackage() {
+        sendMessage();
     }
 
     private boolean validateInputFile() {
@@ -140,7 +147,7 @@ public class ServerController implements Control {
         if (file.length() < 1024) {
             errorMessage("Input file too small", "Choose other file with size over 1kB");
             return false;
-        } else if (file.length() > 104857600) {
+        } else if (file.length() > 1048576000) {
             errorMessage("Input file too large", "Choose other file with size less than 100MB");
             return false;
         }
@@ -155,14 +162,13 @@ public class ServerController implements Control {
         return false;
     }
 
-    private void sendMessage(){
-        try{
-            server.sendHeader(encryptedData);
+    private void sendMessage() {
+        try {
+            server.sendHeaders(encryptedData);
             server.sendFile("temporary.enc");
-        }catch(Exception e){
-            errorMessage("Blad mapy zaszyfrowanych uzytkownikow","Brak danych o zaszyfrowanych uzytkownikach");
+        } catch (Exception e) {
+            errorMessage("Blad mapy zaszyfrowanych uzytkownikow", "Brak danych o zaszyfrowanych uzytkownikach");
         }
-
     }
 
     private void errorMessage(String header, String text) {

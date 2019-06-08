@@ -19,7 +19,7 @@
     <children>
         <AnchorPane fx:id="anchorp" prefHeight="480.0" prefWidth="640.0">
             <children>
-                <Button fx:id="backButton" layoutX="552.0" layoutY="443.0" mnemonicParsing="false" onAction="#goBack" text="&lt;" />
+                <Button fx:id="backButton" layoutX="552.0" layoutY="443.0" mnemonicParsing="false" onAction="#goBack" text="Back" />
                 <Button fx:id="dsgbutton" layoutX="23.0" layoutY="27.0" mnemonicParsing="false" onAction="#chooseSrc" text="Choose" />
                 <Label fx:id="pathLabel" layoutX="99.0" layoutY="27.0" prefHeight="25.0" prefWidth="527.0" text="C:/Path" />
             <Button layoutX="25.0" layoutY="128.0" mnemonicParsing="false" onAction="#encryptFile" text="Encryption" />
@@ -34,6 +34,8 @@
             <Button fx:id="selectButton" layoutX="233.0" layoutY="293.0" mnemonicParsing="false" onAction="#selectClient" prefHeight="25.0" prefWidth="32.0" text="&gt;" />
             <Button fx:id="unselectButton" layoutX="233.0" layoutY="330.0" mnemonicParsing="false" onAction="#unselectClient" prefHeight="25.0" prefWidth="32.0" text="&lt;" />
             <Button fx:id="exit" layoutX="509.0" layoutY="443.0" mnemonicParsing="false" onAction="#exitWindow" text="Exit" />
+            <ProgressBar fx:id="progressBar" layoutX="23.0" layoutY="172.0" prefHeight="20.0" prefWidth="574.0" progress="0.0" />
+            <Button fx:id="sendButton" layoutX="516.0" layoutY="318.0" mnemonicParsing="false" onAction="#sendPackage" prefHeight="25.0" prefWidth="72.0" text="Send" />
             </children></AnchorPane>
     </children>
 </GridPane>
