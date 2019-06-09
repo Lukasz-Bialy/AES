@@ -111,8 +111,8 @@ public class Window {
 
     private boolean createRSAKeys(String name, String password) throws Exception {
         KeyPair kp = RSA.generateKeyPair();//Generowanie kluczy do uzytkownika (Tworzy dwa pliki PublicUser.key i PrivateUser.key w folderze projektu)
-        byte[] encryptedPrivateKey = AES.encrypt(RSA.sha256(password), kp.getPrivate().getEncoded());
-        RSA.toFile(kp.getPublic().getEncoded(), "/home/lukasz/IdeaProjects/BSK/PublicKeys/Public" + name);
+        byte[] encryptedPrivateKey = AES.encrypt(RSA.sha256(password), kp.getPrivate().getEncoded()); //Task 13 Task 19
+        RSA.toFile(kp.getPublic().getEncoded(), "/home/lukasz/IdeaProjects/BSK/PublicKeys/Public" + name);//Task 15
         RSA.toFile(encryptedPrivateKey, "/home/lukasz/IdeaProjects/BSK/PrivateKeys/Private" + name);
         return true;
     }

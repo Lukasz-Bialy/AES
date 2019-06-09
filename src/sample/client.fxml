@@ -20,14 +20,17 @@
          <children>
             <Button fx:id="exit" layoutX="509.0" layoutY="443.0" mnemonicParsing="false" onAction="#exitWindow" text="Exit" />
             <Button fx:id="backButton" layoutX="552.0" layoutY="443.0" mnemonicParsing="false" onAction="#goBack" text="Back" />
-            <Button fx:id="dsgbutton" layoutX="23.0" layoutY="27.0" mnemonicParsing="false" onAction="#chooseDsg" text="Choose" />
-            <Label fx:id="pathLabel" layoutX="99.0" layoutY="27.0" prefHeight="25.0" prefWidth="527.0" text="C:/Path" />
-            <TextField fx:id="filename" layoutX="23.0" layoutY="78.0" />
-            <Label layoutX="23.0" layoutY="63.0" text="After decryption file name" />
-            <Button layoutX="285.0" layoutY="408.0" mnemonicParsing="false" onAction="#decryptFile" text="Decrypt" />
+            <Button fx:id="dsgbutton" layoutX="25.0" layoutY="102.0" mnemonicParsing="false" onAction="#chooseDsg" text="Choose" />
+            <Label fx:id="pathLabel" layoutX="109.0" layoutY="102.0" prefHeight="25.0" prefWidth="527.0" text="C:/Path" />
+            <TextField fx:id="filename" layoutX="25.0" layoutY="159.0" />
+            <Label layoutX="25.0" layoutY="137.0" text="After decryption file name" />
+            <Button layoutX="320.0" layoutY="345.0" mnemonicParsing="false" onAction="#decryptFile" text="Decrypt" />
             <ListView fx:id="receiversList" layoutX="320.0" layoutY="71.0" prefHeight="200.0" prefWidth="200.0" />
             <PasswordField fx:id="passwordField" layoutX="320.0" layoutY="299.0" prefHeight="25.0" prefWidth="200.0" />
             <Label layoutX="320.0" layoutY="278.0" text="Password" />
+            <Button layoutX="27.0" layoutY="28.0" mnemonicParsing="false" onAction="#establishConnection" text="Connect" />
+            <Label fx:id="statusLabel" layoutX="109.0" layoutY="33.0" text="Connection" textFill="#f80000" />
+            <Label fx:id="fileReceivedStatus" layoutX="25.0" layoutY="64.0" text="File received" textFill="#f80000"/>
          </children></AnchorPane>
    </children>
 </GridPane>

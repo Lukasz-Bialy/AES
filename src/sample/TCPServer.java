@@ -29,7 +29,7 @@ public class TCPServer extends Task<Boolean> {
 
     void initializeServerSocket() {
         try {
-            serverSocket = new ServerSocket(this.port);
+            serverSocket = new ServerSocket(this.port);//Task 2
         } catch (IOException e) {
             e.printStackTrace();
         }
@@ -68,7 +68,7 @@ public class TCPServer extends Task<Boolean> {
         return false;
     }
 
-    public void sendHeaders(Map<String, Collection<Byte>> receivers) throws IOException {
+    public void sendHeaders(Map<String, Collection<Byte>> receivers) throws IOException {//Task 3 Header
         dOut.writeUTF("Headers");
         dOut.writeInt(receivers.size());
         byte[] headerPrimitive = null;

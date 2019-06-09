@@ -21,12 +21,16 @@ import java.util.HashMap;
 import java.util.Map;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
+import java.util.concurrent.TimeUnit;
 
 public class ClientController implements Control {
 
     private Socket clientSocket;
 
     private Stage stage;
+
+    @FXML
+    Label fileReceivedStatus;
 
     @FXML
     private Label pathLabel;
@@ -37,6 +41,9 @@ public class ClientController implements Control {
     TextField passwordField;
 
     File folder;
+
+    @FXML
+    Label statusLabel;
 
     @FXML
     ListView receiversList;
@@ -59,10 +66,6 @@ public class ClientController implements Control {
 
     @FXML
     private void initialize() throws Exception {
-        /*client = new TCPClient(9000);
-        Task nasluchiwanie = client;
-        ExecutorService executorService = Executors.newFixedThreadPool(1);
-        executorService.execute(nasluchiwanie);*/
         this.window = new Window();
         users = new ArrayList<>();
         loadUsers("/home/lukasz/IdeaProjects/BSK/users.txt");
@@ -84,9 +87,12 @@ public class ClientController implements Control {
         String user = selectUser();
         String password = passwordField.getText();
         if (validateFolder() && validateUser(user) && validatePassword(password)) {
-            decryptor = new Decryptor(folder.getAbsolutePath() + "/" + filename.getText());
+            decryptor = new Decryptor(folder.getAbsolutePath() + "/" + filename.getText()); //Task 7
             System.out.println(folder.getAbsolutePath() + "/" + filename.getText());
+            long timeBefore = System.currentTimeMillis();
             decryptor.decrypt(user, client.receivers.get(user).header, client.file, password);
+            long timeAfter = System.currentTimeMillis();
+            System.out.println("Decrypted in: " + (timeAfter-timeBefore) +"ms");
         } else {
             errorMessage("Authentication failed", "Wrong username or password");
         }
@@ -150,8 +156,13 @@ public class ClientController implements Control {
     }
 
     public void exitWindow(ActionEvent actionEvent) {
-        TCPClient.close();
-        executorService.shutdown();
-        stage.close();
+        System.exit(0);
+    }
+
+    public void establishConnection(ActionEvent actionEvent) {
+        client = new TCPClient(9000, statusLabel, fileReceivedStatus);
+        Task nasluchiwanie = client;
+        ExecutorService executorService = Executors.newFixedThreadPool(1);
+        executorService.execute(nasluchiwanie);
     }
 }

@@ -1,6 +1,8 @@
 package sample;
 
 import javafx.concurrent.Task;
+import javafx.scene.control.Label;
+import javafx.scene.paint.Color;
 
 import java.io.*;
 import java.net.Socket;
@@ -11,19 +13,21 @@ import java.util.stream.IntStream;
 public class TCPClient extends Task<Boolean> {
     static Socket clientSocket;
     int port;
-    static boolean listening;
     Map<String, ByteHeader> receivers = new HashMap<>();
     byte[] header;
     byte[] file;
+    Label statusLabel;
+    Label fileReceivedStatus;
 
-    public TCPClient(int port) {
+    public TCPClient(int port, Label statusLabel, Label fileReceivedStatus) {
+        this.fileReceivedStatus = fileReceivedStatus;
+        this.statusLabel = statusLabel;
         this.port = port;
     }
 
     static void close() {
         try {
             clientSocket.close();
-            listening = false;
         } catch (Exception e) {
             e.printStackTrace();
         }
@@ -31,10 +35,11 @@ public class TCPClient extends Task<Boolean> {
 
     @Override
     protected Boolean call() throws Exception {
-        clientSocket = new Socket("localhost", port);
+        clientSocket = new Socket("localhost", port); //Task 2
         DataOutputStream dOut = new DataOutputStream(clientSocket.getOutputStream());
         DataInputStream dIn = new DataInputStream(clientSocket.getInputStream());
         dOut.writeUTF("hello server");
+        statusLabel.setTextFill(Color.web("#00e64d",1));
         String s = dIn.readUTF();
         System.out.println(s);
         while (true) {
@@ -67,6 +72,8 @@ public class TCPClient extends Task<Boolean> {
             if (length > 0) {
                 dIn.readFully(file);
             }
+            System.out.println("Sending finish " + System.currentTimeMillis());
+            fileReceivedStatus.setTextFill(Color.web("#00e64d",1));
         }
     }
 

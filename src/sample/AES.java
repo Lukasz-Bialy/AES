@@ -24,7 +24,7 @@ public class AES {
         try {
             keyGenerator = KeyGenerator.getInstance("AES");//Generowanie Klucza sesyjnego
             keyGenerator.init(128);
-            sessionKey = keyGenerator.generateKey();
+            sessionKey = keyGenerator.generateKey();//Task 11
         } catch (NoSuchAlgorithmException e) {
             e.printStackTrace();
         }
@@ -53,15 +53,15 @@ public class AES {
         IvParameterSpec ivspec = null;
         Cipher cipher = null;
         try {
-            cipher = Cipher.getInstance("AES/" + header.mode + "/PKCS5Padding");
+            cipher = Cipher.getInstance("AES/" + header.mode + "/PKCS5Padding"); //Task 9
             if (header.mode.equals("ECB")) {
                 cipher.init(Cipher.DECRYPT_MODE, header.sessionKey);
             } else {
                 ivspec = new IvParameterSpec(header.initVector);
                 cipher.init(Cipher.DECRYPT_MODE, header.sessionKey, ivspec);
             }
-            File outputFile = new File(output.getAbsolutePath() + "." + header.format);
-            saveEncryptedFile(cipher, inputFile, outputFile);
+            File outputFile = new File(output.getAbsolutePath() + "." + header.format);//Task 8
+            saveDecryptedFile(cipher, inputFile, outputFile);
         } catch (Exception e) {
             e.printStackTrace();
         }
@@ -71,7 +71,7 @@ public class AES {
         IvParameterSpec ivspec = null;
         Cipher cipher = null;
         try {
-            cipher = Cipher.getInstance("AES/" + mode + "/PKCS5Padding");
+            cipher = Cipher.getInstance("AES/" + mode + "/PKCS5Padding");//Task 10
             if (mode.equals("ECB")) {
                 iv = null;
                 cipher.init(Cipher.ENCRYPT_MODE, sessionKey);
@@ -84,13 +84,14 @@ public class AES {
         } catch (Exception e) {
             e.printStackTrace();
         }
-        String extension = inputFile.getName().substring(inputFile.getName().lastIndexOf('.') + 1);
+        String extension = inputFile.getName().substring(inputFile.getName().lastIndexOf('.') + 1); //Task 8
         System.out.println("Extension: " + extension);
         Header encryptParams = new Header("AES", 128, 0, mode, extension, iv, sessionKey);
+
         return encryptParams;
     }
 
-    private static void saveEncryptedFile(Cipher cipher, byte[] inputFile, File outputFile) {
+    private static void saveDecryptedFile(Cipher cipher, byte[] inputFile, File outputFile) {
         FileOutputStream outputFileStream = null;
         try {
             outputFileStream = new FileOutputStream(outputFile);
@@ -111,34 +112,32 @@ public class AES {
     }
 
     private static void saveEncryptedFile(Cipher cipher, File inputFile, File outputFile, ProgressBar progressBar) {
-        new Thread() {
-            public void run() {
-                FileOutputStream outputFileStream = null;
-                try {
-                    outputFileStream = new FileOutputStream(outputFile);
-                    FileInputStream inputFileStream = new FileInputStream(inputFile);
-                    double singleProgress = 0.7 / (inputFile.length() / 1024);
+        new Thread(() -> {
+            FileOutputStream outputFileStream = null;
+            try {
+                outputFileStream = new FileOutputStream(outputFile);
+                FileInputStream inputFileStream = new FileInputStream(inputFile);
+                double singleProgress = 0.7 / (inputFile.length() / 1024); //Task 6
 
-                    double progress = 0.3;
-                    byte[] inputBuffer = new byte[1024];
-                    int len;
-                    while ((len = inputFileStream.read(inputBuffer)) != -1) { //-1 means EOF
-                        byte[] outputBuffer = cipher.update(inputBuffer, 0, len);
-                        if (outputBuffer != null)
-                            outputFileStream.write(outputBuffer);
-                        progress += singleProgress;
-                        final double prog = progress;
-                        Platform.runLater(() -> progressBar.setProgress(prog));
-                        // progressBar.setProgress(progress);
-                    }
-                    byte[] outputBuffer = cipher.doFinal();
+                double progress = 0.3;
+                byte[] inputBuffer = new byte[1024];
+                int len;
+                while ((len = inputFileStream.read(inputBuffer)) != -1) { //-1 means EOF
+                    byte[] outputBuffer = cipher.update(inputBuffer, 0, len);
                     if (outputBuffer != null)
                         outputFileStream.write(outputBuffer);
-                } catch (Exception e) {
-                    e.printStackTrace();
+                    progress += singleProgress;
+                    final double prog = progress;
+                    Platform.runLater(() -> progressBar.setProgress(prog));
                 }
+                byte[] outputBuffer = cipher.doFinal();
+                if (outputBuffer != null)
+                    outputFileStream.write(outputBuffer);
+            } catch (Exception e) {
+                e.printStackTrace();
             }
-        }.start();
+            System.out.println("Stop " + System.currentTimeMillis());
+        }).start();
 
     }
 }

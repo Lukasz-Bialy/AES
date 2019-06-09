@@ -82,7 +82,7 @@ public class RSA {
     }
 
     public static Map<String, Collection<Byte>> encryptWithRSA(HashMap<String, Key> receivers, Header header) {
-        Map<String, Collection<Byte>> encryptedUserKeys = new HashMap<>();
+        Map<String, Collection<Byte>> encryptedUserKeys = new HashMap<>();//Task 14
         receivers.forEach((user, publicKey) -> {
             try {
                 header.setUser(user);
@@ -152,7 +152,7 @@ public class RSA {
         } catch (NoSuchAlgorithmException e) {
             e.printStackTrace();
         }
-        byte[] messageDigest = md.digest(password.getBytes());
+        byte[] messageDigest = md.digest(password.getBytes()); //Task 18
         SecretKeySpec keySpec = new SecretKeySpec(messageDigest, "AES");
         return keySpec;
     }

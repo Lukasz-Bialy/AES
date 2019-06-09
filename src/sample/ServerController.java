@@ -61,7 +61,7 @@ public class ServerController implements Control {
         this.window = new Window();
         initializeModeSelection();
         modeChoiceBox.setValue("ECB");
-        modeChoiceBox.getItems().addAll("ECB", "CBC", "OFB", "CFB");
+        modeChoiceBox.getItems().addAll("ECB", "CBC", "OFB", "CFB"); //Task 10
         subBlockChoiceBox.setValue("128");
         subBlockChoiceBox.getItems().addAll("8", "16", "32", "64", "128");
         clientList.getItems().addAll(loadUsers());
@@ -104,7 +104,7 @@ public class ServerController implements Control {
 
     @FXML
     void chooseSrc(ActionEvent event) {
-        FileChooser filechooser = new FileChooser();
+        FileChooser filechooser = new FileChooser();//Task 4
         filechooser.setTitle("Open Resource File");
         file = filechooser.showOpenDialog(stage);
 
@@ -115,8 +115,10 @@ public class ServerController implements Control {
 
     @FXML
     void encryptFile(ActionEvent event) throws IOException, InvalidKeySpecException, NoSuchAlgorithmException {
+        progressBar.setProgress(0);
+        System.out.println("Start " + System.currentTimeMillis());
         String mode = modeChoiceBox.getValue();
-        HashMap<String, Key> receivers = readPublicKeys(new ArrayList<String>(receiversList.getItems()));
+        HashMap<String, Key> receivers = readPublicKeys(new ArrayList<String>(receiversList.getItems()));//Task 12
         if (validateInputFile() && validateFileSize() && !validateReceivers(receivers)) {
             if (!subBlockChoiceBox.isDisabled()) {
                 mode = mode + subBlockChoiceBox.getValue();
@@ -147,7 +149,7 @@ public class ServerController implements Control {
         if (file.length() < 1024) {
             errorMessage("Input file too small", "Choose other file with size over 1kB");
             return false;
-        } else if (file.length() > 1048576000) {
+        } else if (file.length() > 104857600) { //Task 5
             errorMessage("Input file too large", "Choose other file with size less than 100MB");
             return false;
         }
@@ -164,8 +166,10 @@ public class ServerController implements Control {
 
     private void sendMessage() {
         try {
-            server.sendHeaders(encryptedData);
-            server.sendFile("temporary.enc");
+            System.out.println("Sending start " + System.currentTimeMillis());
+           // Map<String, Collection<Byte>> encryptedSessionKeys = RSA.encryptWithRSA(receivers, header);//Task 12
+            server.sendHeaders(encryptedData); //Task 3
+            server.sendFile("temporary.enc"); //Task 3
         } catch (Exception e) {
             errorMessage("Blad mapy zaszyfrowanych uzytkownikow", "Brak danych o zaszyfrowanych uzytkownikach");
         }
