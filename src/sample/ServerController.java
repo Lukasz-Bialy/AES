@@ -34,6 +34,8 @@ public class ServerController implements Control {
 
     private Window window;
 
+    private Header header;
+
     TCPServer server;
 
     Map<String, Collection<Byte>> encryptedData;
@@ -118,15 +120,14 @@ public class ServerController implements Control {
         progressBar.setProgress(0);
         System.out.println("Start " + System.currentTimeMillis());
         String mode = modeChoiceBox.getValue();
-        HashMap<String, Key> receivers = readPublicKeys(new ArrayList<String>(receiversList.getItems()));//Task 12
-        if (validateInputFile() && validateFileSize() && !validateReceivers(receivers)) {
+        if (validateInputFile() && validateFileSize()) {
             if (!subBlockChoiceBox.isDisabled()) {
                 mode = mode + subBlockChoiceBox.getValue();
             }
             System.out.println("Tryb szyfrowania: " + mode);
             encryptor.setMode(mode);
             long timeBefore = System.currentTimeMillis();
-            encryptedData = encryptor.encrypt(file, receivers, progressBar);
+            header = encryptor.encrypt(file, progressBar);
             long timeAfter = System.currentTimeMillis();
             System.out.println("Time elapsed: " + (timeAfter-timeBefore));
         }
@@ -167,9 +168,12 @@ public class ServerController implements Control {
     private void sendMessage() {
         try {
             System.out.println("Sending start " + System.currentTimeMillis());
-           // Map<String, Collection<Byte>> encryptedSessionKeys = RSA.encryptWithRSA(receivers, header);//Task 12
-            server.sendHeaders(encryptedData); //Task 3
-            server.sendFile("temporary.enc"); //Task 3
+            HashMap<String, Key> receivers = readPublicKeys(new ArrayList<String>(receiversList.getItems()));//Task 12
+            if(!validateReceivers(receivers)) {
+                Map<String, Collection<Byte>> encryptedSessionKeys = RSA.encryptWithRSA(receivers, header);//Task 12
+                server.sendHeaders(encryptedSessionKeys); //Task 3
+                server.sendFile("temporary.enc"); //Task 3
+            }
         } catch (Exception e) {
             errorMessage("Blad mapy zaszyfrowanych uzytkownikow", "Brak danych o zaszyfrowanych uzytkownikach");
         }

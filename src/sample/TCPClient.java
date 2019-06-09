@@ -51,6 +51,7 @@ public class TCPClient extends Task<Boolean> {
         String s = dIn.readUTF();
         int length;
         if (s.equals("Headers")) {
+            receivers = new HashMap<>();
             int numberOfUsers = dIn.readInt();
             System.out.println("Number of users: " + numberOfUsers);
             System.out.println();

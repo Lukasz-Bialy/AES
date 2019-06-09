@@ -18,15 +18,13 @@ public class Encryptor extends AES {
         this.mode = mode;
     }
 
-    public Map<String, Collection<Byte>> encrypt(File inputFile, HashMap<String, Key> receivers, ProgressBar progressBar) {
+    public Header encrypt(File inputFile, ProgressBar progressBar) {
         try {
             SecretKey sessionKey = AES.generateSessionKey();
             progressBar.setProgress(0.1);
             byte[] initializationVector = AES.randomInitVector();
             progressBar.setProgress(0.2);
-            Header header = AES.encrypt(mode, inputFile, sessionKey, initializationVector, progressBar);
-            Map<String, Collection<Byte>> encryptedSessionKeys = RSA.encryptWithRSA(receivers, header);//Task 12
-            return encryptedSessionKeys;
+            return AES.encrypt(mode, inputFile, sessionKey, initializationVector, progressBar);
         } catch (Exception e) {
             System.out.println("Error while encrypting: " + e.toString());
         }
